@@ -20,11 +20,11 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
     <section className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div
-          className="absolute left-1/2 top-[-20rem] h-[40rem] w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgb(245_245_245)_0%,transparent_55%)] dark:bg-[radial-gradient(circle_at_center,rgb(55_55_55)_0%,transparent_55%)]"
+          className="absolute left-1/2 top-[-22rem] h-[44rem] w-[66rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgb(var(--brand-glow-1)/0.18)_0%,transparent_55%)] dark:bg-[radial-gradient(circle_at_center,rgb(var(--brand-glow-1)/0.16)_0%,transparent_55%)]"
           aria-hidden="true"
         />
         <div
-          className="absolute left-1/2 top-[-18rem] h-[36rem] w-[56rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgb(200_200_200)_0%,transparent_60%)] opacity-40 dark:bg-[radial-gradient(circle_at_center,rgb(75_75_75)_0%,transparent_60%)]"
+          className="absolute left-1/2 top-[-20rem] h-[40rem] w-[60rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgb(var(--brand-glow-2)/0.14)_0%,transparent_60%)] opacity-80 dark:bg-[radial-gradient(circle_at_center,rgb(var(--brand-glow-2)/0.12)_0%,transparent_60%)]"
           aria-hidden="true"
         />
       </div>
@@ -70,13 +70,13 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
           >
             <a
               href={primaryCtaHref}
-              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 sm:w-auto"
+              className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-[linear-gradient(135deg,rgb(var(--brand-glow-1)/0.95),rgb(var(--brand-glow-2)/0.95))] px-6 text-sm font-medium text-primary-foreground shadow-sm transition-opacity hover:opacity-95 sm:w-auto"
             >
               Get started <ArrowRight className="size-4" aria-hidden="true" />
             </a>
             <a
               href={secondaryCtaHref}
-              className="inline-flex h-11 w-full items-center justify-center rounded-xl border border-border bg-background px-6 text-sm font-medium shadow-sm transition-colors hover:bg-accent sm:w-auto"
+              className="inline-flex h-11 w-full items-center justify-center rounded-xl border border-border bg-background/70 px-6 text-sm font-medium shadow-sm backdrop-blur transition-colors hover:bg-accent/70 sm:w-auto"
             >
               View services
             </a>

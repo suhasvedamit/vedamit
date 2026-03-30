@@ -19,12 +19,9 @@ const ghpSite =
 const ghpRepoSegment = (
   process.env.npm_package_config_ghpages_base ?? "vedamit"
 ).replace(/^\/+|\/+$/g, "");
-const useDomainRoot =
-  githubPages && process.env.GHPAGES_NO_BASE === "true";
+const useDomainRoot = githubPages && process.env.GHPAGES_NO_BASE === "true";
 const base =
-  githubPages && !useDomainRoot && ghpRepoSegment
-    ? `/${ghpRepoSegment}/`
-    : "/";
+  githubPages && !useDomainRoot && ghpRepoSegment ? `/${ghpRepoSegment}/` : "/";
 
 // https://astro.build/config
 export default defineConfig({

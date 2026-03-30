@@ -17,7 +17,8 @@ export function logicalPathname(pathname: string): string {
   const seg = import.meta.env.BASE_URL.replace(/^\/+|\/+$/g, "");
   if (!seg) return normalizePath(pathname);
   const prefix = `/${seg}`;
-  if (pathname === prefix || pathname === `${prefix}/`) return normalizePath("/");
+  if (pathname === prefix || pathname === `${prefix}/`)
+    return normalizePath("/");
   if (pathname.startsWith(`${prefix}/`))
     return normalizePath(pathname.slice(prefix.length) || "/");
   return normalizePath(pathname);

@@ -33,9 +33,11 @@ const sizes: Record<NonNullable<Props["size"]>, string> = {
 };
 
 const variants: Record<NonNullable<Props["variant"]>, string> = {
-  primary: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90",
-  secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-  ghost: "hover:bg-accent hover:text-accent-foreground",
+  primary:
+    "bg-[linear-gradient(135deg,rgb(var(--brand-glow-1)/0.95),rgb(var(--brand-glow-2)/0.95))] text-primary-foreground shadow-sm hover:opacity-95",
+  secondary:
+    "border border-border bg-background/70 text-foreground shadow-sm backdrop-blur hover:bg-accent/70",
+  ghost: "text-foreground/90 hover:bg-accent/70 hover:text-foreground",
 };
 ---
 
