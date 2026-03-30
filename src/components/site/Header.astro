@@ -1,0 +1,220 @@
+---
+import Container from "./Container.astro";
+import LinkButton from "./LinkButton.astro";
+
+function normalizePath(p: string) {
+  if (p !== "/" && p.endsWith("/")) return p.slice(0, -1);
+  return p;
+}
+
+const currentPath = normalizePath(Astro.url.pathname);
+
+function navItemIsActive(href: string) {
+  const h = normalizePath(href);
+  if (h === "/") return currentPath === "/";
+  return currentPath === h || currentPath.startsWith(`${h}/`);
+}
+
+const nav = [
+  { href: "/services", label: "Services" },
+  { href: "/case-studies", label: "Case studies" },
+  { href: "/about", label: "About Us" },
+] as const;
+
+const navLinkDesktop = "rounded-lg px-3 py-2 text-sm transition-colors";
+const navLinkDesktopIdle =
+  "text-muted-foreground hover:bg-accent hover:text-foreground";
+const navLinkDesktopActive = "bg-accent font-medium text-foreground";
+
+const navLinkMobile =
+  "rounded-lg px-3 py-3 text-sm font-medium transition-colors";
+const navLinkMobileIdle =
+  "text-muted-foreground hover:bg-accent hover:text-foreground";
+const navLinkMobileActive = "bg-accent text-foreground";
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+>
+  <input type="checkbox" id="mobile-nav-toggle" class="peer sr-only" />
+  <Container class="flex h-16 items-center justify-between gap-4">
+    <a href="/" class="inline-flex min-w-0 shrink-0 items-center gap-2">
+      <span
+        class="grid size-8 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground"
+      >
+        <span class="text-sm font-semibold">V</span>
+      </span>
+      <span class="truncate text-sm font-semibold tracking-tight">Vedamit</span>
+    </a>
+
+    <div class="flex shrink-0 items-center gap-2 md:gap-3">
+      <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
+        {
+          nav.map((item) => {
+            const active = navItemIsActive(item.href);
+            return (
+              <a
+                href={item.href}
+                class:list={[
+                  navLinkDesktop,
+                  active ? navLinkDesktopActive : navLinkDesktopIdle,
+                ]}
+                aria-current={active ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            );
+          })
+        }
+      </nav>
+      <div class="hidden md:block">
+        <LinkButton
+          href="/contact"
+          variant="primary"
+          size="sm"
+          class={navItemIsActive("/contact")
+            ? "ring-2 ring-ring ring-offset-2 ring-offset-background"
+            : undefined}
+          ariaCurrent={navItemIsActive("/contact") ? "page" : undefined}
+        >
+          Get started
+        </LinkButton>
+      </div>
+
+      <label
+        id="mobile-nav-menubutton"
+        for="mobile-nav-toggle"
+        class="nav-menu-btn inline-flex size-10 cursor-pointer items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground md:hidden"
+        aria-label="Menu"
+        aria-controls="mobile-nav-panel"
+        aria-expanded="false"
+        aria-haspopup="true"
+      >
+        <svg
+          class="icon-menu size-6"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        </svg>
+        <svg
+          class="icon-close absolute left-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"></path>
+        </svg>
+      </label>
+    </div>
+  </Container>
+
+  <div
+    class="grid max-h-0 overflow-hidden border-border/60 bg-background transition-[max-height] duration-300 ease-out peer-checked:max-h-[32rem] peer-checked:border-b md:hidden"
+    id="mobile-nav-panel"
+    role="region"
+    aria-labelledby="mobile-nav-menubutton"
+  >
+    <Container class="flex flex-col gap-1 pb-4 pt-1">
+      <nav aria-label="Mobile primary">
+        {
+          nav.map((item) => {
+            const active = navItemIsActive(item.href);
+            return (
+              <a
+                href={item.href}
+                class:list={[
+                  navLinkMobile,
+                  active ? navLinkMobileActive : navLinkMobileIdle,
+                ]}
+                aria-current={active ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            );
+          })
+        }
+      </nav>
+      <div class="mt-2 border-t border-border/60 pt-4">
+        <LinkButton
+          href="/contact"
+          variant="primary"
+          size="sm"
+          class:list={[
+            "w-full",
+            navItemIsActive("/contact")
+              ? "ring-2 ring-ring ring-offset-2 ring-offset-background"
+              : undefined,
+          ]}
+          ariaCurrent={navItemIsActive("/contact") ? "page" : undefined}
+        >
+          Get started
+        </LinkButton>
+      </div>
+    </Container>
+  </div>
+</header>
+
+<script>
+  function syncMobileNavAria() {
+    const toggle = document.getElementById(
+      "mobile-nav-toggle",
+    ) as HTMLInputElement | null;
+    const btn = document.getElementById("mobile-nav-menubutton");
+    if (toggle && btn)
+      btn.setAttribute("aria-expanded", toggle.checked ? "true" : "false");
+  }
+
+  function closeMobileNav() {
+    const toggle = document.getElementById(
+      "mobile-nav-toggle",
+    ) as HTMLInputElement | null;
+    if (toggle) toggle.checked = false;
+    syncMobileNavAria();
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    closeMobileNav();
+    syncMobileNavAria();
+  });
+
+  document.addEventListener("change", (e) => {
+    if ((e.target as HTMLInputElement | null)?.id !== "mobile-nav-toggle")
+      return;
+    syncMobileNavAria();
+  });
+
+  document.addEventListener("click", (e) => {
+    const panel = document.getElementById("mobile-nav-panel");
+    if (!panel?.contains(e.target as Node)) return;
+    if ((e.target as HTMLElement).closest("a")) closeMobileNav();
+  });
+</script>
+
+<style is:global>
+  .nav-menu-btn {
+    position: relative;
+  }
+  .nav-menu-btn .icon-close {
+    display: none;
+  }
+  #mobile-nav-toggle:checked + div .nav-menu-btn .icon-menu {
+    display: none;
+  }
+  #mobile-nav-toggle:checked + div .nav-menu-btn .icon-close {
+    display: block;
+  }
+</style>

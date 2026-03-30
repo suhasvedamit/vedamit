@@ -1,0 +1,126 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/site/Container.astro";
+import PageHero from "../../components/site/PageHero.astro";
+import { caseStudies } from "../../data/case-studies";
+---
+
+<Layout
+  title="Case Studies — Vedamit"
+  description="Explore our AI, automation, and full‑stack projects that have helped businesses transform their operations."
+  canonicalPath="/case-studies"
+>
+  <section class="py-10 sm:py-12 lg:py-14">
+    <Container>
+      <PageHero
+        badge="Case studies"
+        title="Our projects"
+        description="Explore our innovative technology solutions that have helped businesses transform their operations."
+      />
+
+      <div class="mt-12 mx-auto grid max-w-4xl gap-6">
+        {
+          caseStudies.map((cs) => (
+            <article class="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm">
+              <details class="group">
+                <summary class="flex cursor-pointer list-none items-start gap-4 p-6 transition-colors hover:bg-accent/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:p-8 [&::-webkit-details-marker]:hidden">
+                  <div class="min-w-0 flex-1">
+                    <div class="text-xs font-medium uppercase tracking-wide text-primary">
+                      {cs.category}
+                    </div>
+                    <h2 class="mt-3 text-xl font-semibold tracking-tight sm:text-2xl">
+                      {cs.title}
+                    </h2>
+                    <p class="mt-3 text-sm text-muted-foreground sm:text-base">
+                      {cs.description}
+                    </p>
+                    <p class="mt-4 text-xs font-medium text-muted-foreground">
+                      <span class="group-open:hidden">
+                        Show key features, tech stack, and outcomes
+                      </span>
+                      <span class="hidden group-open:inline">Hide details</span>
+                    </p>
+                  </div>
+                  <span
+                    class="mt-1 grid size-9 shrink-0 place-items-center rounded-lg border border-border/60 bg-background text-muted-foreground shadow-sm"
+                    aria-hidden="true"
+                  >
+                    <svg
+                      class="size-5 transition-transform duration-200 group-open:rotate-180"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </span>
+                </summary>
+
+                <div class="border-t border-border/60 px-6 pb-6 sm:px-8 sm:pb-8">
+                  <div class="pt-8">
+                    <h3 class="text-sm font-semibold tracking-tight">
+                      Key features
+                    </h3>
+                    <div class="mt-4 grid gap-6 sm:grid-cols-2">
+                      {cs.features.map((fg) => (
+                        <div>
+                          <h4 class="text-sm font-medium text-foreground">
+                            {fg.title}
+                          </h4>
+                          <ul class="mt-2 grid gap-2 text-sm text-muted-foreground">
+                            {fg.items.map((item) => (
+                              <li class="flex gap-2">
+                                <span
+                                  class="mt-2 size-1 shrink-0 rounded-full bg-foreground/50"
+                                  aria-hidden="true"
+                                />
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="mt-8 border-t border-border/60 pt-8">
+                    <h3 class="text-sm font-semibold tracking-tight">
+                      Technologies used
+                    </h3>
+                    <ul class="mt-3 flex flex-wrap gap-2">
+                      {cs.technologies.map((t) => (
+                        <li class="rounded-lg border border-border/60 bg-secondary/40 px-2.5 py-1 text-xs text-muted-foreground">
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div class="mt-8 border-t border-border/60 pt-8">
+                    <h3 class="text-sm font-semibold tracking-tight">
+                      Business outcomes
+                    </h3>
+                    <ul class="mt-3 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+                      {cs.outcomes.map((o) => (
+                        <li class="flex gap-2">
+                          <span
+                            class="mt-2 size-1 shrink-0 rounded-full bg-primary"
+                            aria-hidden="true"
+                          />
+                          <span>{o}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </details>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+</Layout>

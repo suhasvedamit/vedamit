@@ -1,0 +1,244 @@
+---
+/**
+ * Append rows via a Google Apps Script web app bound to the sheet;
+ * see scripts/google-sheets-contact-webapp.gs and .env.example.
+ */
+const contactSheetEndpoint =
+  import.meta.env.PUBLIC_CONTACT_SHEET_WEBAPP_URL ?? "";
+
+const interestOptions = [
+  "AI & Machine Learning",
+  "AI Automation",
+  "Agentic AI Services",
+  "AI Integration",
+  "AI as a Product",
+  "Customized AI Solutions",
+  "Data Intelligence",
+  "Full-Stack Development",
+  "Mobile Development",
+  "Cloud Solutions",
+  "Cybersecurity",
+  "Other",
+];
+
+const field =
+  "flex w-full rounded-xl border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50";
+
+const fieldSelect = `${field} h-10 py-1.5`;
+
+const nameMaxLength = 128;
+const emailMaxLength = 254;
+const phoneMaxLength = 32;
+const messageMaxLength = 2000;
+---
+
+<div class="grid gap-3">
+  <div
+    id="contact-form-success"
+    class="hidden rounded-xl border border-emerald-500/35 bg-emerald-500/10 px-3 py-2 text-sm text-foreground"
+    role="status"
+    aria-live="polite"
+  >
+    Thanks — your message was sent. We’ll get back to you soon.
+  </div>
+
+  <div
+    id="contact-form-error"
+    class="hidden rounded-xl border border-destructive/45 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+    role="alert"
+    aria-live="assertive"
+  >
+  </div>
+
+  <form
+    id="vedamit-contact-form"
+    class="grid gap-3"
+    data-endpoint={contactSheetEndpoint}
+    novalidate
+  >
+    <label class="grid gap-1.5">
+      <span class="text-sm font-medium text-foreground">
+        Name <span class="text-destructive">*</span>
+      </span>
+      <input
+        class={field}
+        type="text"
+        name="name"
+        required
+        maxlength={nameMaxLength}
+        autocomplete="name"
+        placeholder="Your name"
+      />
+    </label>
+
+    <label class="grid gap-1.5">
+      <span class="text-sm font-medium text-foreground">
+        Email <span class="text-destructive">*</span>
+      </span>
+      <input
+        class={field}
+        type="email"
+        name="email"
+        required
+        maxlength={emailMaxLength}
+        autocomplete="email"
+        placeholder="you@example.com"
+      />
+    </label>
+
+    <label class="grid gap-1.5">
+      <span class="text-sm font-medium text-foreground">
+        Phone <span class="text-destructive">*</span>
+      </span>
+      <input
+        id="vedamit-contact-phone"
+        class={field}
+        type="tel"
+        name="phone"
+        required
+        maxlength={phoneMaxLength}
+        autocomplete="tel"
+        inputmode="tel"
+        placeholder="+91 98765 43210"
+        title="10–15 digits; you may use spaces, hyphens, or parentheses."
+      />
+    </label>
+
+    <label class="grid gap-1.5">
+      <span class="text-sm font-medium text-foreground">
+        Service <span class="text-destructive">*</span>
+      </span>
+      <select class={fieldSelect} name="service" required>
+        <option value="" disabled selected hidden>Choose an option</option>
+        {interestOptions.map((label) => <option value={label}>{label}</option>)}
+      </select>
+    </label>
+
+    <label class="grid gap-1.5">
+      <span class="text-sm font-medium text-foreground">
+        Message <span class="text-destructive">*</span>
+      </span>
+      <textarea
+        class={`${field} min-h-[4.25rem] max-h-40 resize-y sm:min-h-[4.75rem]`}
+        name="message"
+        required
+        maxlength={messageMaxLength}
+        rows={3}
+        placeholder="What are you looking to build?"></textarea>
+    </label>
+
+    <div class="flex flex-wrap items-center gap-2 pt-0.5">
+      <button
+        type="submit"
+        id="vedamit-contact-submit"
+        class="inline-flex h-10 items-center justify-center rounded-xl bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-60"
+      >
+        Send message
+      </button>
+    </div>
+  </form>
+</div>
+
+<script is:inline>
+  function bindVedamitContactForm() {
+    var form = document.getElementById("vedamit-contact-form");
+    var successEl = document.getElementById("contact-form-success");
+    var errorEl = document.getElementById("contact-form-error");
+    var submitBtn = document.getElementById("vedamit-contact-submit");
+    if (
+      !form ||
+      !successEl ||
+      !errorEl ||
+      !submitBtn ||
+      form.dataset.bound === "1"
+    )
+      return;
+    form.dataset.bound = "1";
+
+    function hideFeedback() {
+      successEl.classList.add("hidden");
+      errorEl.classList.add("hidden");
+      errorEl.textContent = "";
+    }
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      hideFeedback();
+
+      var endpoint = (form.getAttribute("data-endpoint") || "").trim();
+      if (!endpoint) {
+        errorEl.textContent =
+          "This form is not configured yet. Please email us directly or try again later.";
+        errorEl.classList.remove("hidden");
+        return;
+      }
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var fd = new FormData(form);
+      var phoneRaw = String(fd.get("phone") || "").trim();
+      var phoneDigitsOnly = phoneRaw.replace(/\D/g, "");
+      if (phoneDigitsOnly.length < 10 || phoneDigitsOnly.length > 15) {
+        errorEl.textContent =
+          "Enter a valid phone number: 10–15 digits (country code optional; spaces are fine).";
+        errorEl.classList.remove("hidden");
+        var phoneEl = document.getElementById("vedamit-contact-phone");
+        if (phoneEl) phoneEl.focus();
+        return;
+      }
+      var body = new URLSearchParams();
+      body.set("name", String(fd.get("name") || ""));
+      body.set("email", String(fd.get("email") || ""));
+      body.set("phone", String(fd.get("phone") || ""));
+      body.set("service", String(fd.get("service") || ""));
+      body.set("message", String(fd.get("message") || ""));
+
+      submitBtn.disabled = true;
+      var prevLabel = submitBtn.textContent;
+      submitBtn.textContent = "Sending…";
+
+      try {
+        var res = await fetch(endpoint, {
+          method: "POST",
+          mode: "cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body.toString(),
+        });
+
+        var text = "";
+        try {
+          text = (await res.text()).trim();
+        } catch (_) {}
+
+        if (res.ok && text.toLowerCase() === "success") {
+          successEl.classList.remove("hidden");
+          form.reset();
+          return;
+        }
+
+        var msg =
+          text ||
+          (!res.ok ? "Something went wrong (" + res.status + ")." : "") ||
+          "Could not send your message. Please try again or email us.";
+        errorEl.textContent = msg;
+        errorEl.classList.remove("hidden");
+      } catch (err) {
+        errorEl.textContent =
+          "Network error — check your connection or try again in a moment.";
+        errorEl.classList.remove("hidden");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = prevLabel;
+      }
+    });
+  }
+
+  if (!globalThis.__vedamitContactListener) {
+    globalThis.__vedamitContactListener = true;
+    document.addEventListener("astro:page-load", bindVedamitContactForm);
+  }
+  bindVedamitContactForm();
+</script>

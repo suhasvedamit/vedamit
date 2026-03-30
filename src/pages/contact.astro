@@ -1,0 +1,78 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/site/Container.astro";
+import PageHero from "../components/site/PageHero.astro";
+import ContactForm from "../components/site/ContactForm.astro";
+import LinkedInIcon from "../components/site/LinkedInIcon.astro";
+---
+
+<Layout
+  title="Contact — Vedamit Solutions"
+  description="Tell us what you’re building."
+  canonicalPath="/contact"
+  preFooterCta={false}
+>
+  <section class="py-10 sm:py-12 lg:py-14">
+    <Container>
+      <PageHero
+        badge="Contact"
+        title="Let’s build something great."
+        description="Tell us what you’re building — we’ll follow up with next steps."
+      />
+
+      <div
+        class="mx-auto mt-6 grid max-w-5xl gap-5 sm:mt-8 sm:gap-6 lg:grid-cols-2 lg:items-stretch"
+      >
+        <div
+          class="flex h-full min-h-0 flex-col gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-sm sm:gap-4 sm:p-5"
+        >
+          <h2 class="px-0 text-base font-semibold tracking-tight sm:px-1 sm:text-lg">
+            Send us a message
+          </h2>
+          <ContactForm />
+        </div>
+
+        <div
+          class="grid h-full min-h-0 content-start gap-4 rounded-2xl border border-border/60 bg-card p-6 shadow-sm"
+        >
+          <div class="grid gap-2">
+            <div class="text-sm font-medium">Our location</div>
+            <div class="text-sm text-muted-foreground">
+              Ravet, Pune, MH, India 412101
+            </div>
+          </div>
+          <div class="grid gap-2">
+            <div class="text-sm font-medium">Phone</div>
+            <a
+              class="text-sm text-muted-foreground hover:text-foreground"
+              href="tel:+919768249899"
+            >
+              +91 97682 49899
+            </a>
+          </div>
+          <div class="grid gap-2">
+            <div class="text-sm font-medium">Email</div>
+            <a
+              class="text-sm text-muted-foreground hover:text-foreground"
+              href="mailto:vedamitsolutions@gmail.com"
+            >
+              vedamitsolutions@gmail.com
+            </a>
+          </div>
+          <div class="grid gap-2">
+            <div class="text-sm font-medium">LinkedIn</div>
+            <a
+              class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+              href="https://in.linkedin.com/company/vedamit"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedInIcon class="size-4 shrink-0 opacity-90" />
+              Vedamit Solutions
+            </a>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+</Layout>

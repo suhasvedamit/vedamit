@@ -1,0 +1,79 @@
+---
+import Container from "./Container.astro";
+import LinkedInIcon from "./LinkedInIcon.astro";
+---
+
+<footer class="border-t border-border/60">
+  <Container class="py-12">
+    <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2">
+          <span
+            class="grid size-8 place-items-center rounded-xl bg-primary text-primary-foreground"
+          >
+            <span class="text-sm font-semibold">V</span>
+          </span>
+          <span class="text-sm font-semibold tracking-tight"
+            >Vedamit Solutions</span
+          >
+        </div>
+        <p class="max-w-md text-sm text-muted-foreground">
+          AI, automation, and full‑stack engineering for teams that want
+          measurable outcomes.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <div class="text-sm font-medium">Company</div>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li>
+            <a class="hover:text-foreground" href="/services">Services</a>
+          </li>
+          <li>
+            <a class="hover:text-foreground" href="/case-studies"
+              >Case Studies</a
+            >
+          </li>
+          <li><a class="hover:text-foreground" href="/about">About Us</a></li>
+          <li><a class="hover:text-foreground" href="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="space-y-3">
+        <div class="text-sm font-medium">Contact</div>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li>Ravet, Pune, MH, India 412101</li>
+          <li>
+            <a class="hover:text-foreground" href="tel:+919768249899"
+              >+91 97682 49899</a
+            >
+          </li>
+          <li>
+            <a
+              class="hover:text-foreground"
+              href="mailto:vedamitsolutions@gmail.com"
+              >vedamitsolutions@gmail.com</a
+            >
+          </li>
+          <li>
+            <a
+              class="inline-flex items-center gap-2 hover:text-foreground"
+              href="https://in.linkedin.com/company/vedamit"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedInIcon class="size-4 shrink-0 opacity-90" />
+              LinkedIn
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-border/60 pt-6 text-center">
+      <p class="text-xs text-muted-foreground">
+        © 2026 Vedamit Solutions. All rights reserved.
+      </p>
+    </div>
+  </Container>
+</footer>

@@ -1,0 +1,58 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/site/Container.astro";
+import LinkButton from "../../components/site/LinkButton.astro";
+import PageHero from "../../components/site/PageHero.astro";
+import { services } from "../../data/services";
+---
+
+<Layout
+  title="Services — Vedamit Solutions"
+  description="Comprehensive technology solutions: AI, automation, full‑stack, mobile, cloud, and cybersecurity."
+  canonicalPath="/services"
+>
+  <section class="py-10 sm:py-12 lg:py-14">
+    <Container>
+      <PageHero
+        badge="Our Services"
+        title="Comprehensive technology solutions to help your business thrive."
+        description="Choose a focused engagement or a full delivery team. We build premium user experiences backed by robust engineering."
+      >
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+          <LinkButton href="/contact" variant="primary" class="w-full sm:w-auto"
+            >Get started</LinkButton
+          >
+          <LinkButton
+            href="/contact"
+            variant="secondary"
+            class="w-full sm:w-auto">Talk to an expert</LinkButton
+          >
+        </div>
+      </PageHero>
+
+      <div class="mt-12 grid gap-4 lg:grid-cols-2">
+        {
+          services.map((svc) => (
+            <article class="rounded-2xl border border-border/60 bg-card p-6 shadow-sm">
+              <h2 class="text-lg font-semibold tracking-tight">{svc.title}</h2>
+              <p class="mt-2 text-sm text-muted-foreground">
+                {svc.description}
+              </p>
+              <ul class="mt-5 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+                {svc.bullets.map((b) => (
+                  <li class="flex gap-2">
+                    <span
+                      class="mt-1 size-1.5 shrink-0 rounded-full bg-foreground/60"
+                      aria-hidden="true"
+                    />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+</Layout>

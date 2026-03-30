@@ -1,0 +1,91 @@
+---
+Astro.response.status = 404;
+
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/site/Container.astro";
+import LinkButton from "../components/site/LinkButton.astro";
+
+const quickLinks = [
+  { href: "/services", label: "Services" },
+  { href: "/case-studies", label: "Case studies" },
+  { href: "/about", label: "About" },
+] as const;
+---
+
+<Layout
+  title="Page not found — Vedamit Solutions"
+  description="The page you are looking for does not exist or may have been moved."
+  preFooterCta={false}
+  compactMain
+>
+  <section class="py-8 sm:py-12 lg:py-14">
+    <Container>
+      <div class="mx-auto flex max-w-2xl flex-col items-center text-center">
+        <div
+          class="inline-flex items-center rounded-full border border-border/70 bg-background px-3 py-1 text-xs text-muted-foreground shadow-sm"
+        >
+          Page not found
+        </div>
+
+        <p
+          class="mt-4 bg-gradient-to-br from-foreground via-foreground/75 to-muted-foreground/55 bg-clip-text text-[clamp(2.75rem,11vw,4.5rem)] font-semibold leading-none tracking-tighter text-transparent"
+          aria-hidden="true"
+        >
+          404
+        </p>
+
+        <h1
+          class="mt-3 text-balance text-xl font-semibold tracking-tight sm:text-2xl"
+        >
+          This page isn’t here
+        </h1>
+        <p class="mt-2 max-w-md text-pretty text-sm text-muted-foreground">
+          The link may be wrong or the page was removed. Head back home or reach
+          out—we can point you in the right direction.
+        </p>
+
+        <div
+          class="mt-6 flex w-full max-w-md flex-col gap-3 sm:flex-row sm:justify-center"
+        >
+          <LinkButton href="/" class="sm:min-w-[9.5rem]"
+            >Back to home</LinkButton
+          >
+          <LinkButton
+            href="/contact"
+            variant="secondary"
+            class="sm:min-w-[9.5rem]"
+          >
+            Contact us
+          </LinkButton>
+        </div>
+
+        <nav
+          class="mt-8 w-full border-t border-border/60 pt-6"
+          aria-label="Popular pages"
+        >
+          <p
+            class="text-[0.65rem] font-medium uppercase tracking-[0.14em] text-muted-foreground"
+          >
+            Explore
+          </p>
+          <ul
+            class="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm"
+          >
+            {
+              quickLinks.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="font-medium text-foreground/90 underline-offset-4 transition-colors hover:text-foreground hover:underline"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </div>
+    </Container>
+  </section>
+</Layout>
