@@ -2,7 +2,11 @@
   "name": "vedamit_website",
   "type": "module",
   "version": "0.0.1",
-  "homepage": "https://suhasvedamit.github.io/vedamit/",
+  "homepage": "https://vedamit.com/",
+  "config": {
+    "ghpages_site": "https://vedamit.com",
+    "ghpages_base": "vedamit"
+  },
   "engines": {
     "node": ">=22.12.0"
   },
@@ -15,8 +19,9 @@
     "lint": "prettier --check .",
     "format": "prettier --write .",
     "verify": "npm run check && npm run lint && npm run build",
-    "build:pages": "GITHUB_PAGES=true astro build",
-    "deploy": "npm run build:pages && gh-pages -d dist -r https://github.com/suhasvedamit/vedamit.git"
+    "build:pages": "GITHUB_PAGES=true GHPAGES_NO_BASE=true astro build",
+    "build:pages:subpath": "GITHUB_PAGES=true astro build",
+    "deploy": "npm run build:pages && gh-pages -d dist -r https://github.com/suhasvedamit/vedamit.git --cname vedamit.com"
   },
   "dependencies": {
     "@astrojs/react": "^3.6.3",
