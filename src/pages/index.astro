@@ -5,6 +5,7 @@ import LinkButton from "../components/site/LinkButton.astro";
 import { services } from "../data/services";
 import { whyChooseUs, stats, trustedBy } from "../data/home-marketing";
 import { HeroMotion } from "../components/marketing/HeroMotion";
+import { sitePath } from "../lib/site";
 ---
 
 <Layout
@@ -13,8 +14,8 @@ import { HeroMotion } from "../components/marketing/HeroMotion";
   canonicalPath="/"
 >
   <HeroMotion
-    primaryCtaHref="/contact"
-    secondaryCtaHref="/services"
+    primaryCtaHref={sitePath("/contact")}
+    secondaryCtaHref={sitePath("/services")}
     client:load
   />
 
@@ -43,7 +44,7 @@ import { HeroMotion } from "../components/marketing/HeroMotion";
         {
           services.slice(0, 3).map((svc) => (
             <a
-              href="/services"
+              href={sitePath("/services")}
               class="group rounded-2xl border border-border/60 bg-card p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-border hover:shadow-md"
             >
               <div class="text-base font-semibold tracking-tight">
@@ -135,7 +136,7 @@ import { HeroMotion } from "../components/marketing/HeroMotion";
           trustedBy.partners.map((p) => (
             <div class="group flex min-h-[7.5rem] items-center justify-center rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-border hover:shadow-md">
               <img
-                src={p.logoSrc}
+                src={sitePath(p.logoSrc)}
                 alt={`${p.name} logo`}
                 class="h-12 w-auto max-h-14 max-w-[9rem] object-contain grayscale opacity-55 transition group-hover:grayscale-0 group-hover:opacity-100 sm:h-14 sm:max-h-16"
                 loading="lazy"

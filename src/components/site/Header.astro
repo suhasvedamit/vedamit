@@ -1,13 +1,9 @@
 ---
 import Container from "./Container.astro";
 import LinkButton from "./LinkButton.astro";
+import { logicalPathname, normalizePath, sitePath } from "../../lib/site";
 
-function normalizePath(p: string) {
-  if (p !== "/" && p.endsWith("/")) return p.slice(0, -1);
-  return p;
-}
-
-const currentPath = normalizePath(Astro.url.pathname);
+const currentPath = logicalPathname(Astro.url.pathname);
 
 function navItemIsActive(href: string) {
   const h = normalizePath(href);
@@ -38,7 +34,7 @@ const navLinkMobileActive = "bg-accent text-foreground";
 >
   <input type="checkbox" id="mobile-nav-toggle" class="peer sr-only" />
   <Container class="flex h-16 items-center justify-between gap-4">
-    <a href="/" class="inline-flex min-w-0 shrink-0 items-center gap-2">
+    <a href={sitePath("/")} class="inline-flex min-w-0 shrink-0 items-center gap-2">
       <span
         class="grid size-8 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground"
       >
@@ -54,7 +50,7 @@ const navLinkMobileActive = "bg-accent text-foreground";
             const active = navItemIsActive(item.href);
             return (
               <a
-                href={item.href}
+                href={sitePath(item.href)}
                 class:list={[
                   navLinkDesktop,
                   active ? navLinkDesktopActive : navLinkDesktopIdle,
@@ -135,7 +131,7 @@ const navLinkMobileActive = "bg-accent text-foreground";
             const active = navItemIsActive(item.href);
             return (
               <a
-                href={item.href}
+                href={sitePath(item.href)}
                 class:list={[
                   navLinkMobile,
                   active ? navLinkMobileActive : navLinkMobileIdle,

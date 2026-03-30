@@ -4,6 +4,7 @@ import { ViewTransitions } from "astro:transitions";
 import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
 import PreFooterCta from "../components/site/PreFooterCta.astro";
+import { sitePath } from "../lib/site";
 
 type Props = {
   title: string;
@@ -27,17 +28,26 @@ const {
 } = Astro.props;
 
 const siteOrigin = Astro.site ?? new URL("https://vedamit.com");
+const originHref = siteOrigin.href.replace(/\/+$/, "");
 
 function normalizeCanonicalPath(p: string): string {
   if (!p || p === "/") return "/";
   return p.replace(/\/+$/, "");
 }
 
+/** Full pathname including `base` (e.g. /vedamit/about) for canonical and OG URLs. */
+function absoluteSitePath(path: string): string {
+  const baseSegment = import.meta.env.BASE_URL.replace(/^\/+|\/+$/g, "");
+  const part = normalizeCanonicalPath(path);
+  if (part === "/") return baseSegment ? `/${baseSegment}/` : "/";
+  return baseSegment ? `/${baseSegment}${part}` : part;
+}
+
 const canonicalUrl = canonicalPath
-  ? new URL(normalizeCanonicalPath(canonicalPath), siteOrigin).toString()
+  ? `${originHref}${absoluteSitePath(canonicalPath)}`
   : undefined;
 
-const ogImageUrl = new URL(imagePath.replace(/^\//, ""), siteOrigin).toString();
+const ogImageUrl = `${originHref}${absoluteSitePath(imagePath)}`;
 ---
 
 <!doctype html>
@@ -49,9 +59,9 @@ const ogImageUrl = new URL(imagePath.replace(/^\//, ""), siteOrigin).toString();
     <title>{title}</title>
     {description ? <meta name="description" content={description} /> : null}
     {canonicalUrl ? <link rel="canonical" href={canonicalUrl} /> : null}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href={sitePath("/favicon.svg")} />
+    <link rel="icon" type="image/png" sizes="32x32" href={sitePath("/favicon.png")} />
+    <link rel="icon" href={sitePath("/favicon.ico")} sizes="any" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Vedamit Solutions" />
     <meta property="og:title" content={title} />

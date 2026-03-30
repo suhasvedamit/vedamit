@@ -1,6 +1,7 @@
 ---
 import Container from "./Container.astro";
 import LinkedInIcon from "./LinkedInIcon.astro";
+import { sitePath } from "../../lib/site";
 ---
 
 <footer class="border-t border-border/60">
@@ -27,15 +28,25 @@ import LinkedInIcon from "./LinkedInIcon.astro";
         <div class="text-sm font-medium">Company</div>
         <ul class="space-y-2 text-sm text-muted-foreground">
           <li>
-            <a class="hover:text-foreground" href="/services">Services</a>
+            <a class="hover:text-foreground" href={sitePath("/services")}
+              >Services</a
+            >
           </li>
           <li>
-            <a class="hover:text-foreground" href="/case-studies"
+            <a class="hover:text-foreground" href={sitePath("/case-studies")}
               >Case Studies</a
             >
           </li>
-          <li><a class="hover:text-foreground" href="/about">About Us</a></li>
-          <li><a class="hover:text-foreground" href="/contact">Contact</a></li>
+          <li>
+            <a class="hover:text-foreground" href={sitePath("/about")}
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a class="hover:text-foreground" href={sitePath("/contact")}
+              >Contact</a
+            >
+          </li>
         </ul>
       </div>
 

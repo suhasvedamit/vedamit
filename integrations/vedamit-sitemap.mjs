@@ -18,16 +18,19 @@ function escapeXml(s) {
 export default function vedamitSitemap() {
   /** @type {string} */
   let siteHref = "https://vedamit.com";
+  /** @type {string} */
+  let basePath = "";
 
   return {
     name: "vedamit-sitemap",
     hooks: {
-      /** @param {{ config: { site?: URL | string } }} args */
+      /** @param {{ config: { site?: URL | string; base?: string } }} args */
       "astro:config:done": ({ config }) => {
         if (config.site)
           siteHref =
             typeof config.site === "string" ? config.site : config.site.href;
         siteHref = siteHref.replace(/\/$/, "");
+        basePath = (config.base ?? "/").replace(/^\/+|\/+$/g, "");
       },
       /** @param {{ dir: URL; pages: { pathname: string }[]; logger: { info: (m: string) => void } }} args */
       "astro:build:done": async ({ dir, pages, logger }) => {
@@ -38,7 +41,8 @@ export default function vedamitSitemap() {
         for (const { pathname } of pages) {
           if (pathname === "404" || pathname.startsWith("404")) continue;
           const path = pathname === "" ? "/" : `/${pathname}`;
-          urls.add(new URL(path, site).href);
+          const withBase = basePath ? `/${basePath}${path}` : path;
+          urls.add(new URL(withBase, site).href);
         }
 
         const sorted = [...urls].sort();

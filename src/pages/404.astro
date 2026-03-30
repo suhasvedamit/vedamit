@@ -4,6 +4,7 @@ Astro.response.status = 404;
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/site/Container.astro";
 import LinkButton from "../components/site/LinkButton.astro";
+import { sitePath } from "../lib/site";
 
 const quickLinks = [
   { href: "/services", label: "Services" },
@@ -75,7 +76,7 @@ const quickLinks = [
               quickLinks.map((item) => (
                 <li>
                   <a
-                    href={item.href}
+                    href={sitePath(item.href)}
                     class="font-medium text-foreground/90 underline-offset-4 transition-colors hover:text-foreground hover:underline"
                   >
                     {item.label}
