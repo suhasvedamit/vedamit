@@ -32,10 +32,10 @@ export const whyChooseUs = {
 };
 
 export const stats = [
-  { value: "100+", label: "Projects Completed" },
-  { value: "50+", label: "Enterprise Clients" },
-  { value: "25+", label: "AI Experts" },
-  { value: "15+", label: "Years Experience" },
+  { value: "50+", label: "Projects Completed" },
+  { value: "25+", label: "Enterprise Clients" },
+  { value: "10+", label: "AI Experts" },
+  { value: "10+", label: "Years Experience" },
 ] as const;
 
 export const trustedBy = {

@@ -122,40 +122,21 @@ import { sitePath } from "../lib/site";
     </Container>
   </section>
 
-  <section class="border-t border-border/50 py-16 sm:py-20">
+  <section class="border-t border-border/50 py-14 sm:py-20">
     <Container wide>
-      <div class="mt-2">
-        {/* Mobile slider for stats */}
-        <div class="flex gap-4 overflow-x-auto scroll-smooth px-1 sm:hidden">
-          {
-            stats.map((stat) => (
-              <div class="relative flex min-w-[11rem] flex-shrink-0 flex-col items-center justify-center overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-card to-muted/40 px-5 py-7 text-center shadow-sm">
-                <div class="font-heading text-2xl font-semibold tabular-nums tracking-tight text-foreground">
-                  {stat.value}
-                </div>
-                <div class="mt-1 text-xs font-medium text-muted-foreground">
-                  {stat.label}
-                </div>
+      <div class="grid gap-4 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        {
+          stats.map((stat) => (
+            <div class="relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-card to-muted/40 px-4 py-7 text-center shadow-sm">
+              <div class="font-heading text-2xl font-semibold tabular-nums tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+                {stat.value}
               </div>
-            ))
-          }
-        </div>
-
-        {/* Tablet / desktop grid */}
-        <div class="hidden gap-5 sm:grid sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {
-            stats.map((stat) => (
-              <div class="relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-card to-muted/40 px-6 py-10 text-center shadow-sm">
-                <div class="font-heading text-3xl font-semibold tabular-nums tracking-tight text-foreground sm:text-4xl">
-                  {stat.value}
-                </div>
-                <div class="mt-2 text-sm font-medium text-muted-foreground">
-                  {stat.label}
-                </div>
+              <div class="mt-1.5 text-xs sm:text-sm font-medium text-muted-foreground">
+                {stat.label}
               </div>
-            ))
-          }
-        </div>
+            </div>
+          ))
+        }
       </div>
     </Container>
   </section>
@@ -177,41 +158,60 @@ import { sitePath } from "../lib/site";
           {trustedBy.subtitle}
         </p>
       </div>
-      <div class="mt-12">
-        {/* Mobile slider */}
-        <div class="flex gap-4 overflow-x-auto scroll-smooth px-1 sm:hidden">
-          {
-            trustedBy.partners.map((p) => (
-              <div class="group flex min-h-[7.5rem] min-w-[11rem] flex-shrink-0 items-center justify-center rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md">
-                <img
-                  src={sitePath(p.logoSrc)}
-                  alt={`${p.name} logo`}
-                  class="h-12 w-auto max-h-14 max-w-[9rem] object-contain opacity-50 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            ))
-          }
-        </div>
-
-        {/* Tablet / desktop grid */}
-        <div class="hidden gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {
-            trustedBy.partners.map((p) => (
-              <div class="group flex min-h-[7.5rem] items-center justify-center rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md">
-                <img
-                  src={sitePath(p.logoSrc)}
-                  alt={`${p.name} logo`}
-                  class="h-12 w-auto max-h-14 max-w-[9rem] object-contain opacity-50 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 sm:h-14 sm:max-h-16"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            ))
-          }
+      <div class="mt-12 -mx-4 overflow-hidden">
+        <div class="partners-marquee px-4">
+          <div class="partners-marquee-track">
+            {
+              [...trustedBy.partners, ...trustedBy.partners].map((p) => (
+                <div class="group flex min-h-[7.5rem] w-56 flex-shrink-0 items-center justify-center rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md">
+                  <img
+                    src={sitePath(p.logoSrc)}
+                    alt={`${p.name} logo`}
+                    class="h-12 w-auto max-h-14 max-w-[9rem] object-contain opacity-50 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 sm:h-14 sm:max-h-16"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
     </Container>
   </section>
+
+<style is:global>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .partners-marquee {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .partners-marquee-track {
+    display: inline-flex;
+    gap: 1rem;
+    animation: partners-scroll 30s linear infinite;
+  }
+
+  .partners-marquee:hover .partners-marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes partners-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
 </Layout>
