@@ -4,7 +4,7 @@
  */
 
 export const whyChooseUs = {
-  title: "Why Choose Us",
+  title: "Engineered for impact",
   subtitle:
     "Experience the benefits of working with a team of AI experts dedicated to your success",
   items: [
@@ -39,7 +39,7 @@ export const stats = [
 ] as const;
 
 export const trustedBy = {
-  title: "Trusted by Industry Leaders",
+  title: "Built on strong collaborations",
   subtitle:
     "We're proud to partner with innovative companies across various industries",
   partners: [

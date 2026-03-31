@@ -62,11 +62,17 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
               transition={{ duration }}
               className="font-heading mt-6 text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.06]"
             >
-              Software that{" "}
+              {/* Software that{" "}
               <span className="bg-gradient-to-r from-primary to-[oklch(0.5_0.14_210)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.78_0.12_195)]">
                 earns its place
               </span>{" "}
-              in production.
+              in production. */}
+              Empowering businesses with{" "}
+              <span className="bg-gradient-to-r from-primary to-[oklch(0.5_0.14_210)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.78_0.12_195)]">
+              cutting-edge AI and IT 
+              </span>{" "}
+              solutions.
+
             </motion.h1>
 
             <motion.p
@@ -126,7 +132,9 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
               </div>
               <div className="rounded-2xl border border-border/60 bg-card/90 p-5 shadow-md backdrop-blur-md">
                 <div className="flex items-center gap-2 text-sm font-semibold tracking-tight">
-                  <Layers className="size-4 text-primary" aria-hidden="true" />
+                  <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/12 text-primary">
+                    <Layers className="size-4 text-primary" aria-hidden="true" />
+                  </span>
                   Automation & ops
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -136,10 +144,12 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
               </div>
               <div className="rounded-2xl border border-border/60 bg-card/90 p-5 shadow-md backdrop-blur-md">
                 <div className="flex items-center gap-2 text-sm font-semibold tracking-tight">
-                  <Sparkles
-                    className="size-4 text-primary"
-                    aria-hidden="true"
-                  />
+                  <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/12 text-primary">
+                    <Sparkles
+                      className="size-4 text-primary"
+                      aria-hidden="true"
+                    />
+                  </span>
                   Craft & performance
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
