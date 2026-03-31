@@ -4,86 +4,110 @@ import LinkedInIcon from "./LinkedInIcon.astro";
 import { sitePath } from "../../lib/site";
 ---
 
-<footer class="border-t border-border/60">
-  <Container class="py-12">
-    <div class="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
-      <div class="space-y-3">
-        <div class="inline-flex items-center gap-2">
+<footer class="relative border-t border-border/60 bg-card/30">
+  <Container wide class="py-16 sm:py-20">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div class="space-y-4 lg:max-w-sm">
+        <div class="inline-flex items-center gap-3">
           <span
-            class="grid size-8 place-items-center rounded-xl bg-primary text-primary-foreground"
+            class="grid size-9 place-items-center rounded-2xl bg-gradient-to-br from-primary to-[oklch(0.38_0.12_210)] text-primary-foreground shadow-md shadow-primary/20"
           >
-            <span class="text-sm font-semibold">V</span>
+            <span class="font-heading text-base font-bold">V</span>
           </span>
-          <span class="text-sm font-semibold tracking-tight"
+          <span class="font-heading text-base font-semibold tracking-tight"
             >Vedamit Solutions</span
           >
         </div>
-        <p class="max-w-md text-sm text-muted-foreground">
-          AI, automation, and full‑stack engineering for teams that want
-          measurable outcomes.
+        <p class="text-sm leading-relaxed text-muted-foreground">
+          AI, automation, and full‑stack engineering for teams that want clear
+          metrics, fast iteration, and production‑grade delivery.
         </p>
       </div>
 
-      <div class="space-y-3">
-        <div class="text-sm font-medium">Company</div>
-        <ul class="space-y-2 text-sm text-muted-foreground">
+      <div class="space-y-4">
+        <div
+          class="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+        >
+          Navigate
+        </div>
+        <ul class="space-y-3 text-sm">
           <li>
-            <a class="hover:text-foreground" href={sitePath("/services")}
-              >Services</a
+            <a
+              class="text-foreground/90 transition-colors hover:text-primary"
+              href={sitePath("/services")}>Services</a
             >
           </li>
           <li>
-            <a class="hover:text-foreground" href={sitePath("/case-studies")}
-              >Case Studies</a
+            <a
+              class="text-foreground/90 transition-colors hover:text-primary"
+              href={sitePath("/case-studies")}>Case studies</a
             >
           </li>
           <li>
-            <a class="hover:text-foreground" href={sitePath("/about")}
-              >About Us</a
+            <a
+              class="text-foreground/90 transition-colors hover:text-primary"
+              href={sitePath("/about")}>About</a
             >
           </li>
           <li>
-            <a class="hover:text-foreground" href={sitePath("/contact")}
-              >Contact</a
+            <a
+              class="text-foreground/90 transition-colors hover:text-primary"
+              href={sitePath("/contact")}>Contact</a
             >
           </li>
         </ul>
       </div>
 
-      <div class="space-y-3">
-        <div class="text-sm font-medium">Contact</div>
-        <ul class="space-y-2 text-sm text-muted-foreground">
-          <li>Ravet, Pune, MH, India 412101</li>
+      <div class="space-y-4">
+        <div
+          class="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+        >
+          Visit
+        </div>
+        <ul class="space-y-3 text-sm text-muted-foreground">
+          <li class="leading-snug">Ravet, Pune, MH, India 412101</li>
           <li>
-            <a class="hover:text-foreground" href="tel:+919768249899"
-              >+91 97682 49899</a
+            <a
+              class="text-foreground/90 transition-colors hover:text-primary"
+              href="tel:+919768249899">+91 97682 49899</a
             >
           </li>
           <li>
             <a
-              class="hover:text-foreground"
+              class="break-all text-foreground/90 transition-colors hover:text-primary"
               href="mailto:vedamitsolutions@gmail.com"
               >vedamitsolutions@gmail.com</a
             >
           </li>
-          <li>
-            <a
-              class="inline-flex items-center gap-2 hover:text-foreground"
-              href="https://in.linkedin.com/company/vedamit"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <LinkedInIcon class="size-4 shrink-0 opacity-90" />
-              LinkedIn
-            </a>
-          </li>
         </ul>
+      </div>
+
+      <div class="space-y-4">
+        <div
+          class="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+        >
+          Social
+        </div>
+        <a
+          class="inline-flex items-center gap-2 text-sm text-foreground/90 transition-colors hover:text-primary"
+          href="https://in.linkedin.com/company/vedamit"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <LinkedInIcon class="size-4 shrink-0 opacity-90" />
+          LinkedIn
+        </a>
       </div>
     </div>
 
-    <div class="mt-10 border-t border-border/60 pt-6 text-center">
+    <div
+      class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-8 sm:flex-row"
+    >
       <p class="text-xs text-muted-foreground">
         © 2026 Vedamit Solutions. All rights reserved.
+      </p>
+      <p class="text-xs text-muted-foreground">
+        Built for clarity, speed, and measurable outcomes.
       </p>
     </div>
   </Container>

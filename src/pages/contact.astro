@@ -12,8 +12,8 @@ import LinkedInIcon from "../components/site/LinkedInIcon.astro";
   canonicalPath="/contact"
   preFooterCta={false}
 >
-  <section class="py-10 sm:py-12 lg:py-14">
-    <Container>
+  <section class="py-12 sm:py-16 lg:py-20">
+    <Container wide>
       <PageHero
         badge="Contact"
         title="Let’s build something great."
@@ -21,48 +21,56 @@ import LinkedInIcon from "../components/site/LinkedInIcon.astro";
       />
 
       <div
-        class="mx-auto mt-6 grid max-w-5xl gap-5 sm:mt-8 sm:gap-6 lg:grid-cols-2 lg:items-stretch"
+        class="mx-auto mt-8 grid max-w-5xl gap-6 sm:mt-10 lg:grid-cols-2 lg:items-stretch"
       >
         <div
-          class="flex h-full min-h-0 flex-col gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-sm sm:gap-4 sm:p-5"
+          class="flex h-full min-h-0 flex-col gap-4 rounded-2xl border border-border/60 bg-card p-6 shadow-lg shadow-foreground/[0.03] sm:p-8"
         >
-          <h2 class="px-0 text-base font-semibold tracking-tight sm:px-1 sm:text-lg">
+          <h2 class="font-heading text-lg font-semibold tracking-tight">
             Send us a message
           </h2>
           <ContactForm />
         </div>
 
         <div
-          class="grid h-full min-h-0 content-start gap-4 rounded-2xl border border-border/60 bg-card p-6 shadow-sm"
+          class="grid h-full min-h-0 content-start gap-6 rounded-2xl border border-border/60 bg-gradient-to-br from-card to-muted/30 p-8 shadow-sm"
         >
-          <div class="grid gap-2">
-            <div class="text-sm font-medium">Our location</div>
-            <div class="text-sm text-muted-foreground">
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+              Location
+            </div>
+            <div class="mt-2 text-sm leading-relaxed text-muted-foreground">
               Ravet, Pune, MH, India 412101
             </div>
           </div>
-          <div class="grid gap-2">
-            <div class="text-sm font-medium">Phone</div>
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+              Phone
+            </div>
             <a
-              class="text-sm text-muted-foreground hover:text-foreground"
+              class="mt-2 inline-block text-sm text-muted-foreground transition-colors hover:text-primary"
               href="tel:+919768249899"
             >
               +91 97682 49899
             </a>
           </div>
-          <div class="grid gap-2">
-            <div class="text-sm font-medium">Email</div>
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+              Email
+            </div>
             <a
-              class="text-sm text-muted-foreground hover:text-foreground"
+              class="mt-2 inline-block break-all text-sm text-muted-foreground transition-colors hover:text-primary"
               href="mailto:vedamitsolutions@gmail.com"
             >
               vedamitsolutions@gmail.com
             </a>
           </div>
-          <div class="grid gap-2">
-            <div class="text-sm font-medium">LinkedIn</div>
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
+              LinkedIn
+            </div>
             <a
-              class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+              class="mt-2 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary"
               href="https://in.linkedin.com/company/vedamit"
               target="_blank"
               rel="noopener noreferrer"

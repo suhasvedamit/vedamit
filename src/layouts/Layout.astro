@@ -51,7 +51,7 @@ const ogImageUrl = `${originHref}${absoluteSitePath(imagePath)}`;
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -84,10 +84,29 @@ const ogImageUrl = `${originHref}${absoluteSitePath(imagePath)}`;
     <meta name="twitter:image" content={ogImageUrl} />
     <ViewTransitions />
   </head>
-  <body class="min-h-dvh bg-background text-foreground antialiased">
+  <body
+    class="min-h-dvh bg-background text-foreground selection:bg-primary/15 selection:text-foreground"
+  >
+    <div
+      class="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div
+        class="absolute -left-1/4 top-[-20%] h-[55%] w-[70%] rounded-full bg-primary/[0.055] blur-[100px]"
+      >
+      </div>
+      <div
+        class="absolute -right-1/5 top-[35%] h-[45%] w-[55%] rounded-full bg-indigo-500/[0.07] blur-[90px] dark:bg-indigo-400/[0.08]"
+      >
+      </div>
+      <div
+        class="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,var(--background)_55%,var(--background)_100%)]"
+      >
+      </div>
+    </div>
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 rounded-md bg-background px-4 py-2 text-sm font-medium shadow"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium shadow-lg"
     >
       Skip to content
     </a>

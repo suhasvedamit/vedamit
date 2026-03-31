@@ -1,11 +1,19 @@
 ---
 type Props = {
   class?: string;
+  /** Wider reading width for marketing heroes */
+  wide?: boolean;
 };
 
-const { class: className } = Astro.props;
+const { class: className, wide = false } = Astro.props;
 ---
 
-<div class:list={["mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className]}>
+<div
+  class:list={[
+    "mx-auto w-full px-4 sm:px-6 lg:px-8",
+    wide ? "max-w-7xl" : "max-w-6xl",
+    className,
+  ]}
+>
   <slot />
 </div>

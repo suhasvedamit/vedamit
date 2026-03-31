@@ -19,65 +19,63 @@ const quickLinks = [
   preFooterCta={false}
   compactMain
 >
-  <section class="py-8 sm:py-12 lg:py-14">
-    <Container>
+  <section class="py-12 sm:py-16 lg:py-20">
+    <Container wide>
       <div class="mx-auto flex max-w-2xl flex-col items-center text-center">
         <div
-          class="inline-flex items-center rounded-full border border-border/70 bg-background px-3 py-1 text-xs text-muted-foreground shadow-sm"
+          class="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/[0.07] px-3.5 py-1.5 text-xs font-medium text-primary"
         >
           Page not found
         </div>
 
         <p
-          class="mt-4 bg-gradient-to-br from-foreground via-foreground/75 to-muted-foreground/55 bg-clip-text text-[clamp(2.75rem,11vw,4.5rem)] font-semibold leading-none tracking-tighter text-transparent"
+          class="font-heading mt-6 bg-gradient-to-br from-primary via-foreground to-muted-foreground bg-clip-text text-[clamp(3rem,12vw,5rem)] font-semibold leading-none tracking-tighter text-transparent"
           aria-hidden="true"
         >
           404
         </p>
 
         <h1
-          class="mt-3 text-balance text-xl font-semibold tracking-tight sm:text-2xl"
+          class="font-heading mt-4 text-balance text-2xl font-semibold tracking-tight sm:text-3xl"
         >
           This page isn’t here
         </h1>
-        <p class="mt-2 max-w-md text-pretty text-sm text-muted-foreground">
+        <p class="mt-3 max-w-md text-pretty text-base text-muted-foreground">
           The link may be wrong or the page was removed. Head back home or reach
           out—we can point you in the right direction.
         </p>
 
         <div
-          class="mt-6 flex w-full max-w-md flex-col gap-3 sm:flex-row sm:justify-center"
+          class="mt-8 flex w-full max-w-md flex-col gap-3 sm:flex-row sm:justify-center"
         >
-          <LinkButton href="/" class="sm:min-w-[9.5rem]"
-            >Back to home</LinkButton
-          >
+          <LinkButton href="/" class="sm:min-w-[10rem]">Back to home</LinkButton>
           <LinkButton
             href="/contact"
             variant="secondary"
-            class="sm:min-w-[9.5rem]"
+            class="sm:min-w-[10rem]"
           >
             Contact us
           </LinkButton>
         </div>
 
         <nav
-          class="mt-8 w-full border-t border-border/60 pt-6"
+          class="mt-10 w-full border-t border-border/60 pt-8"
           aria-label="Popular pages"
         >
           <p
-            class="text-[0.65rem] font-medium uppercase tracking-[0.14em] text-muted-foreground"
+            class="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground"
           >
             Explore
           </p>
           <ul
-            class="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm"
+            class="mt-4 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm"
           >
             {
               quickLinks.map((item) => (
                 <li>
                   <a
                     href={sitePath(item.href)}
-                    class="font-medium text-foreground/90 underline-offset-4 transition-colors hover:text-foreground hover:underline"
+                    class="font-medium text-foreground/90 underline-offset-4 transition-colors hover:text-primary hover:underline"
                   >
                     {item.label}
                   </a>

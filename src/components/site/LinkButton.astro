@@ -25,17 +25,19 @@ const resolvedHref =
   href.startsWith("/") && !href.startsWith("//") ? sitePath(href) : href;
 
 const base =
-  "inline-flex items-center justify-center rounded-xl font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50";
 
 const sizes: Record<NonNullable<Props["size"]>, string> = {
-  sm: "h-9 px-4 text-sm",
-  md: "h-11 px-5 text-sm",
+  sm: "h-9 gap-1.5 rounded-full px-4 text-sm",
+  md: "h-11 gap-2 rounded-full px-6 text-sm",
 };
 
 const variants: Record<NonNullable<Props["variant"]>, string> = {
-  primary: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90",
-  secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-  ghost: "hover:bg-accent hover:text-accent-foreground",
+  primary:
+    "bg-primary text-primary-foreground shadow-md shadow-primary/20 hover:bg-primary/92 hover:shadow-lg hover:shadow-primary/25 active:scale-[0.98]",
+  secondary:
+    "border border-border/80 bg-card text-foreground shadow-sm hover:border-primary/25 hover:bg-accent/50",
+  ghost: "rounded-full hover:bg-accent/80 hover:text-accent-foreground",
 };
 ---
 

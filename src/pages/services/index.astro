@@ -11,14 +11,14 @@ import { services } from "../../data/services";
   description="Comprehensive technology solutions: AI, automation, full‑stack, mobile, cloud, and cybersecurity."
   canonicalPath="/services"
 >
-  <section class="py-10 sm:py-12 lg:py-14">
-    <Container>
+  <section class="py-12 sm:py-16 lg:py-20">
+    <Container wide>
       <PageHero
         badge="Our Services"
         title="Comprehensive technology solutions to help your business thrive."
         description="Choose a focused engagement or a full delivery team. We build premium user experiences backed by robust engineering."
       >
-        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <LinkButton href="/contact" variant="primary" class="w-full sm:w-auto"
             >Get started</LinkButton
           >
@@ -30,25 +30,35 @@ import { services } from "../../data/services";
         </div>
       </PageHero>
 
-      <div class="mt-12 grid gap-4 lg:grid-cols-2">
+      <div class="mt-14 grid gap-6 lg:grid-cols-2">
         {
-          services.map((svc) => (
-            <article class="rounded-2xl border border-border/60 bg-card p-6 shadow-sm">
-              <h2 class="text-lg font-semibold tracking-tight">{svc.title}</h2>
-              <p class="mt-2 text-sm text-muted-foreground">
-                {svc.description}
-              </p>
-              <ul class="mt-5 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-                {svc.bullets.map((b) => (
-                  <li class="flex gap-2">
-                    <span
-                      class="mt-1 size-1.5 shrink-0 rounded-full bg-foreground/60"
-                      aria-hidden="true"
-                    />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
+          services.map((svc, i) => (
+            <article class="group relative overflow-hidden rounded-2xl border border-border/60 bg-card p-8 shadow-sm transition hover:border-primary/25 hover:shadow-lg">
+              <span
+                class="absolute right-6 top-6 font-heading text-5xl font-bold text-primary/[0.08] transition group-hover:text-primary/[0.14]"
+                aria-hidden="true"
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div class="relative">
+                <h2 class="font-heading text-xl font-semibold tracking-tight">
+                  {svc.title}
+                </h2>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {svc.description}
+                </p>
+                <ul class="mt-6 grid gap-2.5 text-sm text-muted-foreground sm:grid-cols-2">
+                  {svc.bullets.map((b) => (
+                    <li class="flex gap-2.5">
+                      <span
+                        class="mt-2 size-1.5 shrink-0 rounded-full bg-primary/70"
+                        aria-hidden="true"
+                      />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </article>
           ))
         }
