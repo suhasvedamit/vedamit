@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Cpu, Layers, Sparkles } from "lucide-react";
+import { ArrowRight, Cpu, Layers, Sparkles, MonitorCloud } from "lucide-react";
 
 type Props = {
   primaryCtaHref: string;
@@ -40,8 +40,8 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
         />
       </div>
 
-      <div className="mx-auto w-full max-w-7xl px-4 pb-20 pt-16 sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-28 lg:pt-24">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl items-start px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:px-8 lg:pb-24 lg:pt-32">
+        <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <motion.div
             initial="hidden"
             animate="show"
@@ -60,7 +60,7 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
             <motion.h1
               variants={fadeUp}
               transition={{ duration }}
-              className="font-heading mt-6 text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.06]"
+              className="font-heading mt-7 max-w-3xl text-left text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.06]"
             >
               {/* Software that{" "}
               <span className="bg-gradient-to-r from-primary to-[oklch(0.5_0.14_210)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.78_0.12_195)]">
@@ -78,9 +78,9 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
             <motion.p
               variants={fadeUp}
               transition={{ duration }}
-              className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0 mx-auto"
+              className="mt-4 max-w-2xl text-pretty text-left text-base leading-relaxed text-muted-foreground sm:text-lg"
             >
-              Vedamit partners with teams to design and build AI products,
+              Vedamit Solutions partners with teams to design and build AI products,
               resilient systems, and interfaces people trust — with clarity on
               scope, milestones, and measurable impact.
             </motion.p>
@@ -88,21 +88,21 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
             <motion.div
               variants={fadeUp}
               transition={{ duration }}
-              className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:justify-center lg:justify-start"
+              className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4"
             >
               <a
                 href={primaryCtaHref}
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-primary px-7 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/92 hover:shadow-xl hover:shadow-primary/30 active:scale-[0.98]"
               >
-                Start a project{" "}
+                Get in touch{" "}
                 <ArrowRight className="size-4" aria-hidden="true" />
               </a>
-              <a
+              {/* <a
                 href={secondaryCtaHref}
                 className="inline-flex h-11 items-center justify-center rounded-full border border-border/80 bg-card/80 px-7 text-sm font-medium text-foreground shadow-sm backdrop-blur-sm transition-all hover:border-primary/30 hover:bg-accent/40"
               >
                 View services
-              </a>
+              </a> */}
             </motion.div>
           </motion.div>
 
@@ -110,10 +110,10 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: reduce ? 0 : 0.6, delay: reduce ? 0 : 0.15 }}
-            className="relative"
+            className="relative mt-8 lg:mt-0"
           >
-            <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-primary/15 via-transparent to-indigo-500/10 blur-2xl dark:from-primary/20" />
-            <div className="relative grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-1 lg:gap-3">
+            <div className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-primary/12 via-transparent to-indigo-500/10 blur-2xl dark:from-primary/18" />
+            <div className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
               <div className="rounded-2xl border border-border/60 bg-card/90 p-5 shadow-lg shadow-foreground/[0.04] backdrop-blur-md sm:col-span-2 lg:col-span-1">
                 <div className="flex items-start gap-3">
                   <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/12 text-primary">
@@ -121,11 +121,11 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
                   </span>
                   <div className="min-w-0">
                     <div className="text-sm font-semibold tracking-tight">
-                      AI that works with your stack
+                      AI products that ship
                     </div>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                      LLM apps, RAG, agents, evaluations, and integrations —
-                      documented, tested, and ready for your users.
+                      From idea to production: LLM apps, RAG systems, and AI
+                      copilots built around real business use‑cases.
                     </p>
                   </div>
                 </div>
@@ -135,11 +135,27 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
                   <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/12 text-primary">
                     <Layers className="size-4 text-primary" aria-hidden="true" />
                   </span>
-                  Automation & ops
+                  Automation & AI agents
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Orchestration, document pipelines, and monitoring that reduce
-                  manual work without hiding complexity.
+                  Workflow automation and agentic systems that take over
+                  repetitive work, connect your tools, and keep humans in
+                  control.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-border/60 bg-card/90 p-5 shadow-md backdrop-blur-md">
+                <div className="flex items-center gap-2 text-sm font-semibold tracking-tight">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/12 text-primary">
+                    <MonitorCloud
+                      className="size-4 text-primary"
+                      aria-hidden="true"
+                    />
+                  </span>
+                  Full‑stack engineering
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Modern web, mobile, and cloud infrastructure so your AI
+                  initiatives run on reliable, scalable products users love.
                 </p>
               </div>
               <div className="rounded-2xl border border-border/60 bg-card/90 p-5 shadow-md backdrop-blur-md">
@@ -150,12 +166,10 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
                       aria-hidden="true"
                     />
                   </span>
-                  Craft & performance
+                  Strategy & discovery
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Thoughtful UX, secure architecture, and speed that holds up
-                  under real traffic.
-                </p>
+                Roadmapping, architecture decisions, and quick experiments to validate what to build before you invest in full delivery.                </p>
               </div>
             </div>
           </motion.div>

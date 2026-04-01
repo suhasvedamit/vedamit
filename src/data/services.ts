@@ -148,4 +148,17 @@ export const services: Service[] = [
       "Compliance Management",
     ],
   },
+  {
+    title: "Website Development",
+    description:
+      "Modern, conversion-focused websites that give your brand a fast, professional online presence.",
+    bullets: [
+      "Responsive business websites",
+      "Landing pages that convert",
+      "Fast, SEO-friendly implementation",
+      "Online inquiry & contact flows",
+      "Lightweight CMS setup if needed",
+      "Ongoing support & enhancements",
+    ],
+  },
 ];
