@@ -48,6 +48,8 @@ const canonicalUrl = canonicalPath
   : undefined;
 
 const ogImageUrl = `${originHref}${absoluteSitePath(imagePath)}`;
+
+const gaMeasurementId = "G-JMKW9PD7H5";
 ---
 
 <!doctype html>
@@ -82,6 +84,29 @@ const ogImageUrl = `${originHref}${absoluteSitePath(imagePath)}`;
       ) : null
     }
     <meta name="twitter:image" content={ogImageUrl} />
+    {
+      import.meta.env.PROD ? (
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+          />
+          <script is:inline define:vars={{ gaMeasurementId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            document.addEventListener("astro:page-load", () => {
+              gtag("config", gaMeasurementId, {
+                page_path:
+                  window.location.pathname + window.location.search,
+              });
+            });
+          </script>
+        </>
+      ) : null
+    }
     <ViewTransitions />
   </head>
   <body
