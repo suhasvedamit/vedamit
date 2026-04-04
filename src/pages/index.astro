@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/site/Container.astro";
 import LinkButton from "../components/site/LinkButton.astro";
-import { services } from "../data/services";
+import { services, serviceDetailPath } from "../data/services";
 import { whyChooseUs, stats, trustedBy } from "../data/home-marketing";
 import { HeroMotion } from "../components/marketing/HeroMotion";
 import { sitePath } from "../lib/site";
@@ -13,11 +13,7 @@ import { sitePath } from "../lib/site";
   description="AI, automation, and full‑stack development services."
   canonicalPath="/"
 >
-  <HeroMotion
-    primaryCtaHref={sitePath("/contact")}
-    secondaryCtaHref={sitePath("/services")}
-    client:load
-  />
+  <HeroMotion primaryCtaHref={sitePath("/contact")} client:load />
 
   <section class="py-16 sm:py-20">
     <Container wide>
@@ -51,7 +47,7 @@ import { sitePath } from "../lib/site";
         {
           services.slice(0, 3).map((svc, i) => (
             <a
-              href={sitePath("/services")}
+              href={sitePath(serviceDetailPath(svc.slug))}
               class="group relative overflow-hidden rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:shadow-xl hover:shadow-primary/5"
             >
               <span

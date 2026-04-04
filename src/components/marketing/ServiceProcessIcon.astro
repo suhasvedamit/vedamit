@@ -1,0 +1,80 @@
+---
+interface Props {
+  step: number;
+  class?: string;
+}
+
+const { step, class: className = "" } = Astro.props;
+---
+
+<span
+  class:list={[
+    "inline-flex size-11 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/[0.08] text-primary",
+    className,
+  ]}
+  aria-hidden="true"
+>
+  {
+    step === 0 && (
+      <svg
+        class="size-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="11" cy="11" r="7" />
+        <path d="m20 20-3.2-3.2" />
+      </svg>
+    )
+  }
+  {
+    step === 1 && (
+      <svg
+        class="size-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 19l7-7 3 3-7 7-3-3z" />
+        <path d="M18 13l-6-6a2 2 0 0 0-3 3l6 6" />
+      </svg>
+    )
+  }
+  {
+    step === 2 && (
+      <svg
+        class="size-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M4 12h3l2 7 4-14 2 7h5" />
+      </svg>
+    )
+  }
+  {
+    step === 3 && (
+      <svg
+        class="size-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.75"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 17 9 11l4 4 8-8" />
+        <path d="M13 7h6v6" />
+      </svg>
+    )
+  }
+</span>

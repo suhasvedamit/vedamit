@@ -51,6 +51,9 @@
 }
 
 :root {
+  /** Sticky site header (see Header.astro `h-[4.25rem]`). Used for full-viewport section math. */
+  --site-header-height: 4.25rem;
+
   --background: oklch(0.985 0.006 255);
   --foreground: oklch(0.2 0.03 255);
   --card: oklch(1 0.004 255);

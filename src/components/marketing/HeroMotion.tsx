@@ -3,10 +3,9 @@ import { ArrowRight, Cpu, Layers, Sparkles, MonitorCloud } from "lucide-react";
 
 type Props = {
   primaryCtaHref: string;
-  secondaryCtaHref: string;
 };
 
-export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
+export function HeroMotion({ primaryCtaHref }: Props) {
   const reduce = useReducedMotion();
 
   const fadeUp = {
@@ -17,7 +16,7 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
   const duration = reduce ? 0 : 0.55;
 
   return (
-    <section className="relative overflow-hidden border-b border-border/40">
+    <section className="relative flex min-h-[calc(100dvh-var(--site-header-height))] flex-col overflow-hidden border-b border-border/40">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div
           className="absolute inset-0 bg-[linear-gradient(165deg,oklch(0.43_0.11_195/0.07)_0%,transparent_45%),linear-gradient(to_bottom,var(--background),var(--background))]"
@@ -31,6 +30,8 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
             backgroundSize: "64px 64px",
             maskImage:
               "linear-gradient(to bottom, black 0%, black 50%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, black 0%, black 50%, transparent 100%)",
           }}
           aria-hidden="true"
         />
@@ -40,18 +41,18 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
         />
       </div>
 
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl items-start px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:px-8 lg:pb-24 lg:pt-32">
-        <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+      <div className="mx-auto flex min-h-0 w-full max-w-7xl flex-1 flex-col justify-center px-4 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
+        <div className="grid items-stretch gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <motion.div
             initial="hidden"
             animate="show"
             transition={{ staggerChildren: reduce ? 0 : 0.09 }}
-            className="min-w-0 text-center lg:text-left"
+            className="flex min-w-0 flex-col justify-center text-center lg:text-left"
           >
             <motion.div
               variants={fadeUp}
               transition={{ duration }}
-              className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/[0.07] px-3.5 py-1.5 text-xs font-medium tracking-wide text-primary shadow-sm backdrop-blur-sm"
+              className="inline-flex w-fit max-w-full items-center gap-2 self-center rounded-full border border-primary/25 bg-primary/[0.07] px-3.5 py-1.5 text-xs font-medium tracking-wide text-primary shadow-sm backdrop-blur-sm lg:self-start"
             >
               <Sparkles className="size-3.5" aria-hidden="true" />
               AI, automation & full‑stack — built to ship
@@ -110,7 +111,7 @@ export function HeroMotion({ primaryCtaHref, secondaryCtaHref }: Props) {
             initial={reduce ? false : { opacity: 0, y: 20 }}
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: reduce ? 0 : 0.6, delay: reduce ? 0 : 0.15 }}
-            className="relative mt-8 lg:mt-0"
+            className="relative mt-8 flex flex-col justify-center lg:mt-0"
           >
             <div className="pointer-events-none absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-primary/12 via-transparent to-indigo-500/10 blur-2xl dark:from-primary/18" />
             <div className="relative grid gap-4 sm:grid-cols-2 lg:grid-cols-1">

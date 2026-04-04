@@ -1,0 +1,506 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/site/Container.astro";
+import LinkButton from "../../components/site/LinkButton.astro";
+import ServiceHeroVisual from "../../components/marketing/ServiceHeroVisual.astro";
+import ServiceProcessIcon from "../../components/marketing/ServiceProcessIcon.astro";
+import MarketingHeroBackdrop from "../../components/site/MarketingHeroBackdrop.astro";
+import {
+  services,
+  serviceDetailPath,
+  type Service,
+} from "../../data/services";
+import { sitePath } from "../../lib/site";
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props as { service: Service };
+
+const serviceIndex = services.findIndex((s) => s.slug === service.slug);
+const displayNum = String(serviceIndex + 1).padStart(2, "0");
+
+const related = [1, 2, 3].map(
+  (o) => services[(serviceIndex + o) % services.length]!,
+);
+
+const accentVariants = [
+  {
+    mesh: "from-primary/[0.18] via-indigo-500/[0.12] to-transparent",
+    ring: "ring-primary/20",
+    glow: "bg-primary/[0.12]",
+    visualBand:
+      "from-primary/[0.09] via-indigo-500/[0.05] to-transparent dark:from-primary/[0.12] dark:via-indigo-500/[0.07]",
+  },
+  {
+    mesh: "from-indigo-500/[0.2] via-primary/[0.1] to-transparent",
+    ring: "ring-indigo-500/25",
+    glow: "bg-indigo-500/[0.1]",
+    visualBand:
+      "from-indigo-500/[0.08] via-primary/[0.07] to-transparent dark:from-indigo-500/[0.11] dark:via-primary/[0.09]",
+  },
+  {
+    mesh: "from-primary/[0.14] via-sky-500/[0.1] to-transparent",
+    ring: "ring-sky-500/20",
+    glow: "bg-sky-500/[0.08]",
+    visualBand:
+      "from-primary/[0.08] via-sky-500/[0.05] to-transparent dark:from-primary/[0.11] dark:via-sky-500/[0.07]",
+  },
+  {
+    mesh: "from-violet-500/[0.16] via-primary/[0.12] to-transparent",
+    ring: "ring-violet-500/20",
+    glow: "bg-violet-500/[0.1]",
+    visualBand:
+      "from-violet-500/[0.08] via-primary/[0.06] to-transparent dark:from-violet-500/[0.11] dark:via-primary/[0.08]",
+  },
+] as const;
+
+const accent = accentVariants[serviceIndex % accentVariants.length]!;
+
+const serviceHeroVisualClass =
+  service.slug === "website-development"
+    ? "mx-auto w-full max-w-[18rem] min-h-[8rem] sm:max-w-[21.5rem] sm:min-h-[9rem]"
+    : "mx-auto w-full max-w-[17rem] min-h-[7rem] sm:max-w-[20rem] sm:min-h-[8rem]";
+
+const processSteps = [
+  {
+    title: "Discover",
+    body: "We align on goals, constraints, and success metrics—then map the shortest path to proof.",
+  },
+  {
+    title: "Design",
+    body: "Architecture, UX, and data flows that balance speed today with flexibility tomorrow.",
+  },
+  {
+    title: "Build",
+    body: "Iterative delivery with tests, observability, and reviews so quality isn’t a late surprise.",
+  },
+  {
+    title: "Scale",
+    body: "Hardening, documentation, and handoff so your team can operate and extend with confidence.",
+  },
+] as const;
+
+const pageTitle = `${service.title} — Vedamit Solutions`;
+const canonicalPath = serviceDetailPath(service.slug);
+---
+
+<Layout
+  title={pageTitle}
+  description={service.description}
+  canonicalPath={canonicalPath}
+>
+  <section
+    class="relative flex min-h-[calc(100dvh-var(--site-header-height))] flex-col overflow-hidden border-b border-border/40"
+  >
+    <MarketingHeroBackdrop />
+
+    <Container
+      wide
+      class="relative flex min-h-0 flex-1 flex-col py-5 sm:py-6 lg:py-8"
+    >
+      <nav
+        class="shrink-0 text-sm text-muted-foreground"
+        aria-label="Breadcrumb"
+      >
+        <ol class="flex flex-wrap items-center gap-2">
+          <li>
+            <a
+              href={sitePath("/services")}
+              class="transition-colors hover:text-primary"
+              >Services</a
+            >
+          </li>
+          <li aria-hidden="true" class="text-border">/</li>
+          <li class="font-medium text-foreground">{service.title}</li>
+        </ol>
+      </nav>
+
+      <div
+        class="flex min-h-0 flex-1 flex-col justify-center pt-6 sm:pt-8 lg:pt-10"
+      >
+        <div
+          class="grid gap-8 lg:grid-cols-[1.12fr_0.88fr] lg:items-stretch lg:gap-10"
+        >
+        <div class="flex flex-col justify-center lg:py-2">
+          <p
+            class="text-xs font-semibold uppercase tracking-[0.14em] text-primary"
+          >
+            Vedamit · {service.title}
+          </p>
+          <h1
+            class="font-heading mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.35rem] lg:leading-[1.12]"
+          >
+            {service.taglineParts[0]}
+            <span
+              class="bg-gradient-to-r from-primary to-[oklch(0.5_0.14_210)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.78_0.12_195)]"
+            >
+              {service.taglineParts[1]}
+            </span>
+          </h1>
+          <p
+            class="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base"
+          >
+            {service.description}
+          </p>
+          <ul class="mt-4 flex flex-wrap gap-2" aria-label="Highlights">
+            {
+              service.heroPills.map((pill) => (
+                <li>
+                  <span class="inline-flex items-center rounded-full border border-primary/20 bg-primary/[0.07] px-3 py-1 text-xs font-medium text-primary shadow-sm backdrop-blur-sm">
+                    {pill}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+          <div
+            class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
+          >
+            <LinkButton href="/contact" variant="primary" class="w-full sm:w-auto"
+              >Discuss this service</LinkButton
+            >
+            <LinkButton
+              href="/services"
+              variant="secondary"
+              class="w-full sm:w-auto">All services</LinkButton
+            >
+          </div>
+        </div>
+
+        <div
+          class="relative flex min-h-0 flex-col justify-center lg:min-h-[min(58dvh,32rem)]"
+        >
+          <div
+            class="pointer-events-none absolute -inset-3 rounded-[1.5rem] bg-gradient-to-br from-primary/10 via-transparent to-indigo-500/10 blur-2xl dark:from-primary/14"
+            aria-hidden="true"
+          >
+          </div>
+          <div
+            class="relative flex h-full min-h-[20rem] flex-1 flex-col overflow-hidden rounded-[1.25rem] border border-border/60 bg-card/90 shadow-lg shadow-foreground/[0.04] ring-1 backdrop-blur-md dark:bg-card/80 lg:min-h-0"
+            class:list={[accent.ring]}
+          >
+            <div
+              class="pointer-events-none absolute -right-6 -top-6 size-32 rounded-full blur-2xl"
+              class:list={[accent.glow]}
+              aria-hidden="true"
+            >
+            </div>
+            <div
+              class:list={[
+                "relative flex min-h-[11rem] flex-1 flex-col justify-center border-b border-border/50 bg-gradient-to-b px-3 py-6 sm:min-h-[12rem] sm:px-5 sm:py-8",
+                accent.visualBand,
+              ]}
+            >
+              <ServiceHeroVisual slug={service.slug} class={serviceHeroVisualClass} />
+            </div>
+            <div class="relative shrink-0 p-5 sm:p-6">
+              <p
+                class="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground"
+              >
+                {service.heroAside.kicker}
+              </p>
+              <p
+                class="font-heading mt-2 text-lg font-semibold tracking-tight text-foreground sm:text-xl"
+              >
+                {service.heroAside.title}
+              </p>
+              <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {service.heroAside.body}
+              </p>
+              <div
+                class="mt-5 flex items-end justify-between border-t border-border/50 pt-4"
+              >
+                <div>
+                  <p class="text-xs text-muted-foreground">Service line</p>
+                  <p class="mt-0.5 text-sm font-medium text-foreground">
+                    {service.title}
+                  </p>
+                </div>
+                <span
+                  class="font-heading text-4xl font-bold tabular-nums leading-none text-primary/[0.2] sm:text-5xl dark:text-primary/[0.28]"
+                  aria-hidden="true"
+                >
+                  {displayNum}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-t border-border/50 py-14 sm:py-16 lg:py-20">
+    <Container wide>
+      <div class="max-w-2xl">
+        <p
+          class="text-xs font-semibold uppercase tracking-[0.14em] text-primary"
+        >
+          What you gain
+        </p>
+        <h2
+          class="font-heading mt-3 text-balance text-2xl font-semibold tracking-tight sm:text-3xl"
+        >
+          Tangible outcomes—not vague “AI transformation”
+        </h2>
+      </div>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          service.outcomes.map((outcome, i) => (
+            <article class="group relative overflow-hidden rounded-2xl border border-border/60 bg-gradient-to-br from-card to-muted/25 p-6 shadow-sm transition hover:border-primary/25 hover:shadow-md">
+              <div
+                class="pointer-events-none absolute -right-6 -top-6 size-24 rounded-full bg-primary/[0.06] blur-2xl transition group-hover:bg-primary/[0.1]"
+                aria-hidden="true"
+              />
+              <div class="relative flex items-start justify-between gap-3">
+                <span
+                  class="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary shadow-inner shadow-primary/5 ring-1 ring-primary/15"
+                  aria-hidden="true"
+                >
+                  <svg
+                    class="size-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <span
+                  class="font-heading text-3xl font-bold tabular-nums text-primary/[0.12] transition group-hover:text-primary/20"
+                  aria-hidden="true"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              <p class="relative mt-5 text-sm leading-relaxed text-muted-foreground">
+                {outcome}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <section
+    class="border-t border-border/50 bg-muted/20 py-14 sm:py-16 lg:py-20"
+  >
+    <Container wide>
+      <div class="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:items-start">
+        <div>
+          <p
+            class="text-xs font-semibold uppercase tracking-[0.14em] text-primary"
+          >
+            How we think
+          </p>
+          <h2
+            class="font-heading mt-3 text-balance text-2xl font-semibold tracking-tight sm:text-3xl"
+          >
+            Built for clarity, speed, and long-term ownership
+          </h2>
+          <div class="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground">
+            {service.narrative.map((p) => <p>{p}</p>)}
+          </div>
+        </div>
+        <aside
+          class="relative overflow-hidden rounded-[1.35rem] border border-primary/15 bg-gradient-to-br from-primary/[0.07] via-card to-card p-8 shadow-sm dark:from-primary/[0.1]"
+        >
+          <span
+            class="pointer-events-none absolute -right-4 top-6 font-heading text-[7rem] font-bold leading-none text-primary/[0.06] select-none dark:text-primary/[0.09]"
+            aria-hidden="true"
+          >
+            {displayNum}
+          </span>
+          <p
+            class="text-xs font-semibold uppercase tracking-[0.12em] text-primary"
+          >
+            In one line
+          </p>
+          <p
+            class="font-heading mt-4 text-xl font-semibold leading-snug tracking-tight text-foreground sm:text-2xl"
+          >
+            “{service.tagline}”
+          </p>
+          <p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+            That’s the bar we hold for discovery, delivery, and handoff—so your
+            stakeholders see progress every sprint, not just at the finale.
+          </p>
+        </aside>
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-t border-border/50 py-14 sm:py-16 lg:py-20">
+    <Container wide>
+      <div class="max-w-2xl">
+        <p
+          class="text-xs font-semibold uppercase tracking-[0.14em] text-primary"
+        >
+          Capabilities
+        </p>
+        <h2
+          class="font-heading mt-3 text-balance text-2xl font-semibold tracking-tight sm:text-3xl"
+        >
+          What we can deliver under this umbrella
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+          Pick a subset for a focused sprint—or combine streams for a larger
+          program. We’ll right-size the team and timeline to your goals.
+        </p>
+      </div>
+      <ul
+        class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        {
+          service.bullets.map((b) => (
+            <li class="service-capability-item group flex gap-4 rounded-2xl border border-border/60 bg-card px-5 py-4 shadow-sm transition hover:border-primary/25">
+              <span
+                class="relative mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/15 to-primary/5 ring-1 ring-primary/10"
+                aria-hidden="true"
+              >
+                <span
+                  class="size-2 rounded-full bg-gradient-to-br from-primary to-primary/70 shadow-[0_0_10px_var(--primary)]"
+                />
+              </span>
+              <span class="text-sm font-medium leading-snug text-foreground">
+                {b}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <section
+    class="border-t border-border/50 bg-muted/15 py-14 sm:py-16 lg:py-20"
+  >
+    <Container wide>
+      <div class="max-w-2xl">
+        <p
+          class="text-xs font-semibold uppercase tracking-[0.14em] text-primary"
+        >
+          Engagement model
+        </p>
+        <h2
+          class="font-heading mt-3 text-balance text-2xl font-semibold tracking-tight sm:text-3xl"
+        >
+          A steady rhythm from first workshop to production
+        </h2>
+      </div>
+      <ol
+        class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        {
+          processSteps.map((step, i) => (
+            <li class="relative overflow-hidden rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition hover:border-primary/20">
+              <div
+                class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/35 to-transparent"
+                aria-hidden="true"
+              />
+              <div class="flex items-start gap-4">
+                <ServiceProcessIcon step={i} />
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-baseline justify-between gap-2">
+                    <h3 class="text-base font-semibold tracking-tight">
+                      {step.title}
+                    </h3>
+                    <span
+                      class="font-heading text-sm font-bold tabular-nums text-primary/25"
+                      aria-hidden="true"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {step.body}
+                  </p>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </Container>
+  </section>
+
+  <section class="border-t border-border/50 py-14 sm:py-16 lg:py-20">
+    <Container wide>
+      <div class="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+        <div class="max-w-xl">
+          <p
+            class="text-xs font-semibold uppercase tracking-[0.14em] text-primary"
+          >
+            Explore further
+          </p>
+          <h2
+            class="font-heading mt-3 text-balance text-2xl font-semibold tracking-tight sm:text-3xl"
+          >
+            Related services
+          </h2>
+          <p class="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            Many programs span multiple lines. Here are adjacent ways we can
+            help.
+          </p>
+        </div>
+        <LinkButton href="/contact" variant="primary" class="w-full shrink-0 sm:w-auto"
+          >Start a conversation</LinkButton
+        >
+      </div>
+      <div class="mt-10 grid gap-5 md:grid-cols-3">
+        {
+          related.map((r) => (
+            <a
+              href={sitePath(serviceDetailPath(r.slug))}
+              class="group flex flex-col rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-lg"
+            >
+              <span class="text-xs font-medium uppercase tracking-wide text-primary">
+                Service
+              </span>
+              <h3 class="mt-2 font-heading text-lg font-semibold tracking-tight transition group-hover:text-primary">
+                {r.title}
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                {r.description}
+              </p>
+              <span class="mt-5 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                View detail
+                <span aria-hidden="true" class="transition group-hover:translate-x-0.5">
+                  →
+                </span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+</Layout>
+
+<style>
+  .service-capability-item:nth-child(6n + 1) {
+    background-image: radial-gradient(
+      ellipse 120% 80% at 0% 0%,
+      color-mix(in oklch, var(--primary) 10%, transparent),
+      transparent 55%
+    );
+  }
+
+  .service-capability-item:nth-child(6n + 4) {
+    background-image: radial-gradient(
+      ellipse 120% 80% at 100% 100%,
+      color-mix(in oklch, var(--primary) 8%, transparent),
+      transparent 50%
+    );
+  }
+</style>

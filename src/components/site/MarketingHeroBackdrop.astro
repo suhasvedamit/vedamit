@@ -1,0 +1,21 @@
+---
+/**
+ * Same layered background as the home hero (HeroMotion) and service detail heroes.
+ */
+---
+
+<div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+  <div
+    class="absolute inset-0 bg-[linear-gradient(165deg,oklch(0.43_0.11_195/0.07)_0%,transparent_45%),linear-gradient(to_bottom,var(--background),var(--background))]"
+  >
+  </div>
+  <div
+    class="absolute inset-0 opacity-[0.35] dark:opacity-[0.2]"
+    style="background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 50%, transparent 100%);"
+  >
+  </div>
+  <div
+    class="absolute left-1/2 top-0 h-[min(38rem,90vw)] w-[min(52rem,95vw)] -translate-x-1/2 rounded-full bg-primary/[0.12] blur-[80px] dark:bg-primary/[0.18]"
+  >
+  </div>
+</div>

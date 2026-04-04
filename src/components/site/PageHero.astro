@@ -2,18 +2,20 @@
 interface Props {
   badge: string;
   title: string;
+  /** When set, first segment is plain and second uses the same gradient as service heroes. */
+  titleParts?: readonly [string, string];
   description?: string;
 }
 
-const { badge, title, description } = Astro.props;
+const { badge, title, titleParts, description } = Astro.props;
 ---
 
 <div class="mx-auto max-w-3xl text-center">
   <div
-    class="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-3.5 py-1.5 text-xs font-medium tracking-wide text-primary"
+    class="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/[0.06] px-3.5 py-1.5 text-xs font-medium tracking-wide text-primary shadow-sm backdrop-blur-sm"
   >
     <span
-      class="size-1.5 rounded-full bg-primary shadow-[0_0_10px_var(--color-primary)]"
+      class="size-1.5 rounded-full bg-primary shadow-[0_0_10px_var(--primary)]"
       aria-hidden="true"
     ></span>
     {badge}
@@ -21,7 +23,18 @@ const { badge, title, description } = Astro.props;
   <h1
     class="font-heading mt-6 text-balance text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[2.65rem] lg:leading-[1.12]"
   >
-    {title}
+    {
+      titleParts ? (
+        <>
+          {titleParts[0]}
+          <span class="bg-gradient-to-r from-primary to-[oklch(0.5_0.14_210)] bg-clip-text text-transparent dark:from-primary dark:to-[oklch(0.78_0.12_195)]">
+            {titleParts[1]}
+          </span>
+        </>
+      ) : (
+        title
+      )
+    }
   </h1>
   {
     description ? (

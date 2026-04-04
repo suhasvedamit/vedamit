@@ -1,0 +1,968 @@
+ ---
+/**
+ * Abstract SVG hero art per service — uses currentColor (inherit text-primary on wrapper).
+ */
+interface Props {
+  slug: string;
+  class?: string;
+}
+
+const { slug, class: className = "" } = Astro.props;
+
+const visualId: Record<string, number> = {
+  "ai-machine-learning": 0,
+  "ai-automation": 1,
+  "agentic-ai": 2,
+  "ai-integration": 3,
+  "ai-as-a-product": 4,
+  "customized-ai-solutions": 5,
+  "data-intelligence": 6,
+  "full-stack-development": 7,
+  "mobile-development": 8,
+  "cloud-solutions": 9,
+  cybersecurity: 10,
+  "website-development": 11,
+};
+
+const id = visualId[slug] ?? 0;
+---
+
+<div
+  class:list={[
+    "service-hero-visual text-primary/90 dark:text-primary/85",
+    className,
+  ]}
+  aria-hidden="true"
+>
+  {
+    id === 0 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <circle cx="160" cy="118" r="10" class="service-v-fill" />
+        <circle cx="88" cy="72" r="6" class="service-v-stroke" />
+        <circle cx="248" cy="78" r="6" class="service-v-stroke" />
+        <circle cx="58" cy="168" r="6" class="service-v-stroke" />
+        <circle cx="262" cy="172" r="6" class="service-v-stroke" />
+        <circle cx="160" cy="212" r="6" class="service-v-stroke" />
+        <path
+          d="M94 76 L152 112 M226 82 L170 112 M68 164 L118 130 M252 168 L202 132 M160 128 L160 200"
+          class="service-v-line"
+        />
+        <path
+          d="M118 200 L202 200"
+          class="service-v-line service-v-line-dashed"
+        />
+      </svg>
+    )
+  }
+  {
+    id === 1 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <rect
+          x="36"
+          y="98"
+          width="56"
+          height="64"
+          rx="10"
+          class="service-v-rect"
+        />
+        <path d="M98 130 H122" class="service-v-line service-v-arrow" />
+        <rect
+          x="132"
+          y="98"
+          width="56"
+          height="64"
+          rx="10"
+          class="service-v-rect service-v-rect-strong"
+        />
+        <path d="M194 130 H218" class="service-v-line service-v-arrow" />
+        <rect
+          x="228"
+          y="98"
+          width="56"
+          height="64"
+          rx="10"
+          class="service-v-rect"
+        />
+        <path
+          d="M64 188 Q160 228 256 188"
+          class="service-v-line service-v-line-dashed"
+        />
+      </svg>
+    )
+  }
+  {
+    id === 2 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <rect
+          x="130"
+          y="48"
+          width="60"
+          height="52"
+          rx="12"
+          class="service-v-rect service-v-rect-strong"
+        />
+        <rect x="48" y="148" width="52" height="44" rx="10" class="service-v-rect" />
+        <rect x="220" y="148" width="52" height="44" rx="10" class="service-v-rect" />
+        <path
+          d="M160 100 L76 148 M160 100 L244 148"
+          class="service-v-line"
+        />
+        <circle cx="160" cy="118" r="4" class="service-v-fill" />
+        <path
+          d="M100 192 H220"
+          class="service-v-line service-v-line-dashed"
+        />
+      </svg>
+    )
+  }
+  {
+    id === 3 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <rect
+          x="120"
+          y="96"
+          width="80"
+          height="72"
+          rx="12"
+          class="service-v-rect service-v-rect-strong"
+        />
+        <path d="M160 96 V68" class="service-v-line" />
+        <rect x="136" y="40" width="48" height="28" rx="6" class="service-v-rect" />
+        <path d="M120 132 H56 M200 132 H264 M160 168 V220" class="service-v-line" />
+        <rect x="28" y="114" width="28" height="36" rx="6" class="service-v-rect" />
+        <rect x="264" y="114" width="28" height="36" rx="6" class="service-v-rect" />
+        <rect x="136" y="224" width="48" height="28" rx="6" class="service-v-rect" />
+      </svg>
+    )
+  }
+  {
+    id === 4 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <rect
+          x="72"
+          y="148"
+          width="176"
+          height="88"
+          rx="14"
+          class="service-v-rect"
+        />
+        <rect
+          x="96"
+          y="72"
+          width="128"
+          height="64"
+          rx="12"
+          class="service-v-rect service-v-rect-strong"
+        />
+        <path
+          d="M160 136 V148"
+          class="service-v-line"
+        />
+        <path
+          d="M200 100 L218 82 M218 82 L234 98 M218 82 L234 66"
+          class="service-v-line service-v-spark"
+        />
+      </svg>
+    )
+  }
+  {
+    id === 5 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <path
+          d="M88 88 H152 V152 H88 Z"
+          class="service-v-rect"
+        />
+        <path
+          d="M168 88 H232 V152 H168 Z"
+          class="service-v-rect service-v-rect-strong"
+        />
+        <path
+          d="M128 168 H192 V232 H128 Z"
+          class="service-v-rect"
+        />
+        <path
+          d="M152 152 L168 168 M120 120 L108 108"
+          class="service-v-line"
+        />
+      </svg>
+    )
+  }
+  {
+    id === 6 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <path d="M48 192 H272" class="service-v-line service-v-line-dashed" />
+        <rect x="56" y="156" width="36" height="36" rx="4" class="service-v-fill-soft" />
+        <rect x="108" y="132" width="36" height="60" rx="4" class="service-v-fill" />
+        <rect x="160" y="148" width="36" height="44" rx="4" class="service-v-fill-soft" />
+        <rect x="212" y="108" width="36" height="84" rx="4" class="service-v-rect-strong" />
+        <path
+          d="M56 88 Q160 48 264 100"
+          class="service-v-line service-v-line-dashed"
+        />
+      </svg>
+    )
+  }
+  {
+    id === 7 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <rect
+          x="56"
+          y="168"
+          width="208"
+          height="56"
+          rx="8"
+          class="service-v-rect"
+        />
+        <rect
+          x="56"
+          y="108"
+          width="208"
+          height="48"
+          rx="8"
+          class="service-v-rect service-v-rect-strong"
+        />
+        <rect
+          x="56"
+          y="56"
+          width="208"
+          height="40"
+          rx="8"
+          class="service-v-rect"
+        />
+        <path d="M80 76 H240 M80 130 H200 M80 196 H220" class="service-v-line-thin" />
+      </svg>
+    )
+  }
+  {
+    id === 8 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <rect
+          x="108"
+          y="48"
+          width="104"
+          height="176"
+          rx="20"
+          class="service-v-rect"
+        />
+        <rect
+          x="124"
+          y="64"
+          width="72"
+          height="120"
+          rx="6"
+          class="service-v-screen"
+        />
+        <rect x="132" y="196" width="56" height="8" rx="4" class="service-v-fill-soft" />
+        <circle cx="160" cy="216" r="4" class="service-v-fill" />
+      </svg>
+    )
+  }
+  {
+    id === 9 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <path
+          d="M88 148 Q88 108 128 108 H192 Q232 108 232 148 V168 Q232 198 200 198 H120 Q88 198 88 168 Z"
+          class="service-v-rect"
+        />
+        <rect x="120" y="128" width="80" height="52" rx="6" class="service-v-rect-strong" />
+        <path d="M132 144 H188 M132 158 H176 M132 172 H184" class="service-v-line-thin" />
+        <circle cx="160" cy="72" r="6" class="service-v-fill" />
+        <path d="M160 78 V108" class="service-v-line" />
+      </svg>
+    )
+  }
+  {
+    id === 10 && (
+      <svg viewBox="0 0 320 260" fill="none" class="service-visual-svg">
+        <path
+          d="M160 52 L220 88 V152 L160 188 L100 152 V88 Z"
+          class="service-v-rect service-v-rect-strong"
+        />
+        <path
+          d="M128 120 L152 138 L196 98"
+          class="service-v-line service-v-spark"
+        />
+        <circle cx="160" cy="210" r="4" class="service-v-fill-soft" />
+        <path
+          d="M160 188 V206"
+          class="service-v-line"
+        />
+      </svg>
+    )
+  }
+  {
+    id === 11 && (
+      <svg
+        viewBox="0 0 320 292"
+        fill="none"
+        class="service-visual-svg service-visual-svg--webdev"
+      >
+        <defs>
+          <linearGradient
+            id="service-webdev-hero-grad"
+            x1="56"
+            y1="102"
+            x2="188"
+            y2="198"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.55" />
+            <stop
+              offset="45%"
+              stop-color="oklch(0.58 0.14 240)"
+              stop-opacity="0.32"
+            />
+            <stop offset="100%" stop-color="oklch(0.72 0.12 200)" stop-opacity="0.12" />
+          </linearGradient>
+          <linearGradient
+            id="service-webdev-shine"
+            x1="160"
+            y1="36"
+            x2="160"
+            y2="248"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stop-color="white" stop-opacity="0.16" />
+            <stop offset="35%" stop-color="white" stop-opacity="0.03" />
+            <stop offset="100%" stop-color="white" stop-opacity="0" />
+          </linearGradient>
+          <linearGradient
+            id="service-webdev-chrome-edge"
+            x1="48"
+            y1="40"
+            x2="272"
+            y2="232"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stop-color="white" stop-opacity="0.08" />
+            <stop offset="50%" stop-color="white" stop-opacity="0" />
+            <stop offset="100%" stop-color="var(--primary)" stop-opacity="0.06" />
+          </linearGradient>
+          <pattern
+            id="service-webdev-grid"
+            width="14"
+            height="14"
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d="M14 0H0V14"
+              stroke="currentColor"
+              stroke-opacity="0.07"
+              stroke-width="0.6"
+            />
+          </pattern>
+          <clipPath id="service-webdev-clip">
+            <rect x="52" y="78" width="216" height="166" rx="10" />
+          </clipPath>
+          <clipPath id="service-webdev-browser-shell-clip">
+            <rect x="44" y="36" width="232" height="218" rx="16" />
+          </clipPath>
+          <linearGradient
+            id="service-webdev-sweep-grad"
+            x1="0"
+            y1="0"
+            x2="72"
+            y2="0"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stop-color="white" stop-opacity="0" />
+            <stop offset="45%" stop-color="white" stop-opacity="0.14" />
+            <stop offset="100%" stop-color="white" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <!-- Ground -->
+        <ellipse
+          cx="160"
+          cy="274"
+          rx="98"
+          ry="9"
+          class="service-webdev-ground"
+        />
+        <!-- Browser shell -->
+        <rect
+          x="44"
+          y="36"
+          width="232"
+          height="218"
+          rx="16"
+          class="service-v-rect-strong service-webdev-browser"
+        />
+        <rect
+          x="44"
+          y="36"
+          width="232"
+          height="218"
+          rx="16"
+          fill="url(#service-webdev-chrome-edge)"
+          class="pointer-events-none"
+        />
+        <rect
+          x="44"
+          y="36"
+          width="232"
+          height="218"
+          rx="16"
+          fill="url(#service-webdev-shine)"
+          class="pointer-events-none"
+        />
+        <!-- Toolbar -->
+        <circle cx="64" cy="56" r="5" class="service-webdev-dot service-webdev-dot--r" />
+        <circle cx="80" cy="56" r="5" class="service-webdev-dot service-webdev-dot--y" />
+        <circle cx="96" cy="56" r="5" class="service-webdev-dot service-webdev-dot--g" />
+        <rect
+          x="114"
+          y="49"
+          width="154"
+          height="14"
+          rx="7"
+          class="service-webdev-url-bar"
+        />
+        <!-- Lock + URL hint -->
+        <path
+          d="M121.5 57.5v3a2.5 2.5 0 0 0 2.5 2.5h4a2.5 2.5 0 0 0 2.5-2.5v-3M123 57.5V55a3 3 0 0 1 6 0v2.5"
+          class="service-webdev-lock"
+        />
+        <rect x="142" y="55" width="72" height="3" rx="1.5" class="service-webdev-url-text" />
+        <rect x="142" y="61" width="48" height="2.5" rx="1.25" class="service-webdev-url-text-muted" />
+        <!-- Viewport -->
+        <rect
+          x="52"
+          y="78"
+          width="216"
+          height="166"
+          rx="10"
+          fill="url(#service-webdev-grid)"
+          class="service-webdev-viewport-fill"
+        />
+        <g clip-path="url(#service-webdev-clip)">
+          <rect
+            x="60"
+            y="90"
+            width="46"
+            height="13"
+            rx="6.5"
+            class="service-webdev-live-badge service-webdev-badge-pulse"
+          />
+          <rect
+            x="60"
+            y="111"
+            width="118"
+            height="72"
+            rx="10"
+            fill="url(#service-webdev-hero-grad)"
+            stroke="currentColor"
+            stroke-width="1.35"
+            stroke-opacity="0.3"
+            class="service-webdev-hero-panel"
+          />
+          <rect
+            x="68"
+            y="124"
+            width="56"
+            height="9"
+            rx="3"
+            class="service-webdev-hero-line"
+          />
+          <rect
+            x="68"
+            y="138"
+            width="94"
+            height="6"
+            rx="2"
+            class="service-webdev-hero-line-muted"
+          />
+          <rect
+            x="68"
+            y="148"
+            width="78"
+            height="6"
+            rx="2"
+            class="service-webdev-hero-line-muted"
+          />
+          <rect
+            x="68"
+            y="194"
+            width="62"
+            height="22"
+            rx="11"
+            class="service-webdev-cta"
+          />
+          <rect
+            x="76"
+            y="202"
+            width="28"
+            height="5"
+            rx="2"
+            class="service-webdev-cta-label"
+          />
+          <!-- Right: stacked cards (grouped so float animation stays aligned) -->
+          <g class="service-webdev-card-float service-webdev-card-float--1">
+            <rect
+              x="188"
+              y="90"
+              width="72"
+              height="44"
+              rx="9"
+              class="service-webdev-side-card"
+            />
+            <circle cx="202" cy="108" r="7" class="service-webdev-avatar" />
+            <rect x="216" y="100" width="36" height="5" rx="2" class="service-webdev-hero-line-muted" />
+            <rect x="216" y="110" width="28" height="4" rx="2" class="service-webdev-hero-line-muted" />
+          </g>
+          <g class="service-webdev-card-float service-webdev-card-float--2">
+            <rect
+              x="188"
+              y="142"
+              width="72"
+              height="44"
+              rx="9"
+              class="service-webdev-side-card"
+            />
+            <circle cx="202" cy="160" r="7" class="service-webdev-avatar" />
+            <rect x="216" y="152" width="32" height="5" rx="2" class="service-webdev-hero-line-muted" />
+            <rect x="216" y="162" width="40" height="4" rx="2" class="service-webdev-hero-line-muted" />
+          </g>
+          <g class="service-webdev-card-float service-webdev-card-float--3">
+            <rect
+              x="188"
+              y="192"
+              width="72"
+              height="34"
+              rx="9"
+              class="service-webdev-side-card service-webdev-side-card--soft"
+            />
+            <rect x="198" y="204" width="52" height="4" rx="2" class="service-webdev-hero-line-muted" />
+            <rect x="198" y="212" width="44" height="4" rx="2" class="service-webdev-hero-line-muted" />
+          </g>
+          <!-- Vitals row -->
+          <g class="service-webdev-metrics" aria-hidden="true">
+            <rect x="60" y="232" width="56" height="12" rx="6" class="service-webdev-metric-pill" />
+            <rect x="68" y="237" width="22" height="2.5" rx="1.25" class="service-webdev-metric-bar service-webdev-metric-bar--a" />
+            <rect x="122" y="232" width="56" height="12" rx="6" class="service-webdev-metric-pill" />
+            <rect x="130" y="237" width="26" height="2.5" rx="1.25" class="service-webdev-metric-bar service-webdev-metric-bar--b" />
+            <rect x="184" y="232" width="56" height="12" rx="6" class="service-webdev-metric-pill" />
+            <rect x="192" y="237" width="18" height="2.5" rx="1.25" class="service-webdev-metric-bar service-webdev-metric-bar--c" />
+          </g>
+        </g>
+        <!-- Subtle shine sweep across the browser (no spark/cross accents) -->
+        <g
+          clip-path="url(#service-webdev-browser-shell-clip)"
+          class="pointer-events-none service-webdev-sweep-layer"
+        >
+          <rect
+            x="-100"
+            y="32"
+            width="100"
+            height="230"
+            fill="url(#service-webdev-sweep-grad)"
+            class="service-webdev-shine-sweep"
+          />
+        </g>
+      </svg>
+    )
+  }
+</div>
+
+<style>
+  .service-hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .service-visual-svg {
+    width: 100%;
+    max-width: 20rem;
+    height: auto;
+    animation: service-visual-float 5.5s ease-in-out infinite;
+  }
+
+  @keyframes service-visual-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-visual-svg {
+      animation: none;
+    }
+  }
+
+  :global(.dark) .service-v-stroke {
+    fill: color-mix(in oklch, var(--primary) 35%, transparent);
+    stroke: color-mix(in oklch, var(--primary) 55%, transparent);
+    stroke-width: 1.5;
+  }
+
+  .service-v-stroke {
+    fill: color-mix(in oklch, var(--primary) 25%, transparent);
+    stroke: color-mix(in oklch, var(--primary) 45%, transparent);
+    stroke-width: 1.5;
+  }
+
+  .service-v-fill {
+    fill: color-mix(in oklch, var(--primary) 85%, transparent);
+  }
+
+  .service-v-fill-soft {
+    fill: color-mix(in oklch, var(--primary) 22%, transparent);
+  }
+
+  .service-v-rect {
+    stroke: currentColor;
+    stroke-width: 1.75;
+    fill: color-mix(in oklch, var(--primary) 8%, transparent);
+  }
+
+  .service-v-rect-strong {
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: color-mix(in oklch, var(--primary) 14%, transparent);
+  }
+
+  .service-v-screen {
+    stroke: color-mix(in oklch, currentColor 40%, transparent);
+    stroke-width: 1.25;
+    fill: color-mix(in oklch, var(--primary) 6%, transparent);
+  }
+
+  .service-v-line {
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-opacity: 0.55;
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    animation: service-line-draw 2.2s ease forwards 0.15s;
+  }
+
+  .service-v-line-dashed {
+    stroke-dasharray: 8 10;
+    stroke-dashoffset: 0;
+    animation: service-dash-shift 14s linear infinite;
+    stroke-opacity: 0.4;
+  }
+
+  .service-v-arrow {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    animation: service-line-draw 1.4s ease forwards 0.4s;
+  }
+
+  .service-v-spark {
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-opacity: 0.75;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: service-line-draw 1.6s ease forwards 0.5s;
+  }
+
+  .service-v-line-thin {
+    stroke: currentColor;
+    stroke-width: 1.25;
+    stroke-opacity: 0.35;
+    stroke-linecap: round;
+  }
+
+  @keyframes service-line-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes service-dash-shift {
+    to {
+      stroke-dashoffset: -180;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-v-line,
+    .service-v-arrow,
+    .service-v-spark {
+      stroke-dashoffset: 0;
+      animation: none;
+    }
+    .service-v-line-dashed {
+      animation: none;
+    }
+    .service-webdev-cta {
+      animation: none;
+    }
+    .service-webdev-metric-bar {
+      animation: none;
+      transform: none;
+      opacity: 0.85;
+    }
+    .service-webdev-shine-sweep,
+    .service-webdev-hero-panel,
+    .service-webdev-card-float,
+    .service-webdev-badge-pulse {
+      animation: none !important;
+    }
+    .service-webdev-card-float {
+      transform: none;
+    }
+    .service-webdev-hero-panel {
+      opacity: 1;
+    }
+  }
+
+  .service-visual-svg--webdev {
+    max-width: 22rem;
+  }
+
+  .service-webdev-dot--r {
+    fill: oklch(0.62 0.22 25 / 0.75);
+  }
+
+  .service-webdev-dot--y {
+    fill: oklch(0.86 0.16 92 / 0.85);
+  }
+
+  .service-webdev-dot--g {
+    fill: oklch(0.68 0.18 155 / 0.8);
+  }
+
+  .service-webdev-url-bar {
+    fill: color-mix(in oklch, var(--primary) 12%, transparent);
+    stroke: currentColor;
+    stroke-width: 1;
+    stroke-opacity: 0.2;
+  }
+
+  .service-webdev-hero-line {
+    fill: color-mix(in oklch, white 55%, var(--primary) 45%);
+    opacity: 0.85;
+  }
+
+  :global(.dark) .service-webdev-hero-line {
+    fill: color-mix(in oklch, var(--foreground) 25%, var(--primary) 75%);
+    opacity: 0.5;
+  }
+
+  .service-webdev-hero-line-muted {
+    fill: color-mix(in oklch, var(--primary) 18%, transparent);
+  }
+
+  .service-webdev-cta {
+    fill: color-mix(in oklch, var(--primary) 78%, white);
+    stroke: currentColor;
+    stroke-width: 1.25;
+    stroke-opacity: 0.35;
+    animation: service-webdev-cta-glow 2.4s ease-in-out infinite;
+  }
+
+  :global(.dark) .service-webdev-cta {
+    fill: color-mix(in oklch, var(--primary) 55%, transparent);
+  }
+
+  @keyframes service-webdev-cta-glow {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 0 transparent);
+      opacity: 1;
+    }
+    50% {
+      filter: drop-shadow(0 0 10px color-mix(in oklch, var(--primary) 45%, transparent));
+      opacity: 0.92;
+    }
+  }
+
+  .service-webdev-ground {
+    fill: color-mix(in oklch, var(--primary) 30%, transparent);
+    opacity: 0.4;
+  }
+
+  .service-webdev-lock {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.15;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-opacity: 0.42;
+  }
+
+  .service-webdev-url-text {
+    fill: color-mix(in oklch, var(--primary) 35%, transparent);
+    opacity: 0.55;
+  }
+
+  .service-webdev-url-text-muted {
+    fill: color-mix(in oklch, var(--primary) 18%, transparent);
+    opacity: 0.45;
+  }
+
+  .service-webdev-viewport-fill {
+    stroke: currentColor;
+    stroke-width: 1;
+    stroke-opacity: 0.1;
+  }
+
+  .service-webdev-live-badge {
+    fill: color-mix(in oklch, oklch(0.62 0.14 165) 40%, var(--primary) 60%);
+    stroke: currentColor;
+    stroke-width: 1;
+    stroke-opacity: 0.22;
+    opacity: 0.88;
+  }
+
+  :global(.dark) .service-webdev-live-badge {
+    fill: color-mix(in oklch, oklch(0.55 0.12 165) 35%, var(--primary) 65%);
+    opacity: 0.75;
+  }
+
+  .service-webdev-side-card {
+    stroke: currentColor;
+    stroke-width: 1.2;
+    stroke-opacity: 0.35;
+    fill: color-mix(in oklch, var(--primary) 9%, transparent);
+  }
+
+  .service-webdev-side-card--soft {
+    fill: color-mix(in oklch, var(--primary) 5%, transparent);
+    stroke-opacity: 0.28;
+  }
+
+  .service-webdev-avatar {
+    fill: color-mix(in oklch, var(--primary) 28%, transparent);
+    stroke: currentColor;
+    stroke-width: 1;
+    stroke-opacity: 0.25;
+  }
+
+  .service-webdev-cta-label {
+    fill: color-mix(in oklch, white 70%, var(--primary) 30%);
+    opacity: 0.95;
+  }
+
+  :global(.dark) .service-webdev-cta-label {
+    fill: color-mix(in oklch, var(--foreground) 15%, white);
+    opacity: 0.55;
+  }
+
+  .service-webdev-metric-pill {
+    fill: color-mix(in oklch, var(--primary) 6%, transparent);
+    stroke: currentColor;
+    stroke-width: 0.85;
+    stroke-opacity: 0.18;
+  }
+
+  .service-webdev-metric-bar {
+    fill: color-mix(in oklch, var(--primary) 55%, transparent);
+    opacity: 0.75;
+    transform-box: fill-box;
+    transform-origin: left center;
+    animation: service-webdev-metric-pop 2.2s ease-in-out infinite;
+  }
+
+  .service-webdev-metric-bar--a {
+    animation-delay: 0s;
+  }
+
+  .service-webdev-metric-bar--b {
+    animation-delay: 0.25s;
+  }
+
+  .service-webdev-metric-bar--c {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes service-webdev-metric-pop {
+    0%,
+    100% {
+      transform: scaleX(1);
+      opacity: 0.72;
+    }
+    50% {
+      transform: scaleX(1.08);
+      opacity: 1;
+    }
+  }
+
+  .service-webdev-shine-sweep {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: service-webdev-sweep-move 7.5s linear infinite;
+    opacity: 0.85;
+  }
+
+  :global(.dark) .service-visual-svg--webdev .service-webdev-shine-sweep {
+    opacity: 0.42;
+  }
+
+  @keyframes service-webdev-sweep-move {
+    0% {
+      transform: translate3d(-120px, 0, 0) skewX(-14deg);
+    }
+    100% {
+      transform: translate3d(360px, 0, 0) skewX(-14deg);
+    }
+  }
+
+  .service-webdev-hero-panel {
+    animation: service-webdev-hero-breathe 4.8s ease-in-out infinite;
+    transform-box: fill-box;
+  }
+
+  @keyframes service-webdev-hero-breathe {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.88;
+    }
+  }
+
+  .service-webdev-card-float {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: service-webdev-card-drift 4s ease-in-out infinite;
+  }
+
+  .service-webdev-card-float--1 {
+    animation-delay: 0s;
+  }
+
+  .service-webdev-card-float--2 {
+    animation-delay: 0.35s;
+  }
+
+  .service-webdev-card-float--3 {
+    animation-delay: 0.7s;
+  }
+
+  @keyframes service-webdev-card-drift {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+
+  .service-webdev-badge-pulse {
+    animation: service-webdev-badge-glow 2.8s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  @keyframes service-webdev-badge-glow {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.72;
+    }
+  }
+</style>
