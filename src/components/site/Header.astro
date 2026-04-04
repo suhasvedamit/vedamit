@@ -33,19 +33,33 @@ const navLinkMobileActive = "bg-accent/70 text-foreground";
 <header
   class="sticky top-0 z-40 border-b border-border/50 bg-background/75 backdrop-blur-xl supports-[backdrop-filter]:bg-background/65"
 >
-  <input type="checkbox" id="mobile-nav-toggle" class="peer sr-only" />
+  <label for="mobile-nav-toggle" class="sr-only">
+    Toggle mobile navigation menu
+  </label>
+  <input
+    type="checkbox"
+    id="mobile-nav-toggle"
+    class="peer sr-only"
+    tabindex="-1"
+  />
   <Container wide class="flex h-[4.25rem] items-center justify-between gap-4">
     <a
       href={sitePath("/")}
       class="group inline-flex min-w-0 shrink-0 items-center gap-2"
       aria-label="Vedamit home"
     >
-      <img
-        src="/logo.png"
-        alt="Vedamit logo"
-        class="h-10 w-auto sm:h-12"
-        loading="lazy"
-      />
+      <picture>
+        <source srcset={sitePath("/logo.avif")} type="image/avif" />
+        <img
+          src={sitePath("/logo.png")}
+          alt="Vedamit logo"
+          class="h-10 w-auto sm:h-12"
+          width="1280"
+          height="397"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
     </a>
 
     <div class="flex shrink-0 items-center gap-1 md:gap-2">
@@ -88,14 +102,13 @@ const navLinkMobileActive = "bg-accent/70 text-foreground";
         </LinkButton>
       </div>
 
-      <label
+      <button
+        type="button"
         id="mobile-nav-menubutton"
-        for="mobile-nav-toggle"
         class="nav-menu-btn inline-flex size-11 cursor-pointer items-center justify-center rounded-xl border border-transparent text-muted-foreground transition-colors hover:border-border hover:bg-accent/50 hover:text-foreground md:hidden"
         aria-label="Menu"
         aria-controls="mobile-nav-panel"
         aria-expanded="false"
-        aria-haspopup="true"
       >
         <svg
           class="icon-menu size-6"
@@ -125,7 +138,7 @@ const navLinkMobileActive = "bg-accent/70 text-foreground";
             stroke-linejoin="round"
             d="M6 18 18 6M6 6l12 12"></path>
         </svg>
-      </label>
+      </button>
     </div>
   </Container>
 
@@ -205,9 +218,20 @@ const navLinkMobileActive = "bg-accent/70 text-foreground";
   });
 
   document.addEventListener("click", (e) => {
+    const t = e.target as HTMLElement;
+    if (t.closest("#mobile-nav-menubutton")) {
+      const toggle = document.getElementById(
+        "mobile-nav-toggle",
+      ) as HTMLInputElement | null;
+      if (toggle) {
+        toggle.checked = !toggle.checked;
+        syncMobileNavAria();
+      }
+      return;
+    }
     const panel = document.getElementById("mobile-nav-panel");
-    if (!panel?.contains(e.target as Node)) return;
-    if ((e.target as HTMLElement).closest("a")) closeMobileNav();
+    if (!panel?.contains(t)) return;
+    if (t.closest("a")) closeMobileNav();
   });
 </script>
 

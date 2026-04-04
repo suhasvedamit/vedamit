@@ -4,7 +4,7 @@ import Container from "../components/site/Container.astro";
 import LinkButton from "../components/site/LinkButton.astro";
 import { services, serviceDetailPath } from "../data/services";
 import { whyChooseUs, stats, trustedBy } from "../data/home-marketing";
-import { HeroMotion } from "../components/marketing/HeroMotion";
+import HeroMotion from "../components/marketing/HeroMotion.astro";
 import { sitePath } from "../lib/site";
 ---
 
@@ -13,7 +13,7 @@ import { sitePath } from "../lib/site";
   description="AI, automation, and full‑stack development services."
   canonicalPath="/"
 >
-  <HeroMotion primaryCtaHref={sitePath("/contact")} client:load />
+  <HeroMotion primaryCtaHref={sitePath("/contact")} />
 
   <section class="py-16 sm:py-20">
     <Container wide>
@@ -83,7 +83,7 @@ import { sitePath } from "../lib/site";
     <Container wide>
       <div class="max-w-2xl">
         <p
-          class="text-xs font-semibold uppercase tracking-[0.14em] text-primary"
+          class="text-eyebrow-accent text-xs font-semibold uppercase tracking-[0.14em]"
         >
           Why Vedamit
         </p>
@@ -141,7 +141,7 @@ import { sitePath } from "../lib/site";
     <Container wide>
       <div class="max-w-2xl">
         <p
-          class="text-xs font-semibold uppercase tracking-[0.14em] text-primary"
+          class="text-eyebrow-accent text-xs font-semibold uppercase tracking-[0.14em]"
         >
           Partners
         </p>

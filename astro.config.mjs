@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 
-import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 
 import vedamitSitemap from "./integrations/vedamit-sitemap.mjs";
@@ -31,7 +30,12 @@ export default defineConfig({
   site: githubPages ? ghpSite : "https://vedamit.com",
   base,
   trailingSlash: "never",
-  integrations: [react(), vedamitSitemap()],
+  integrations: [vedamitSitemap()],
+
+  /** Inlines route CSS into HTML to avoid a render-blocking stylesheet request (LCP/FCP). */
+  build: {
+    inlineStylesheets: "always",
+  },
 
   vite: {
     plugins: [tailwindcss()],

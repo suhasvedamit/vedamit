@@ -165,4 +165,15 @@
   .font-logo {
     font-family: "Comfortaa Variable", system-ui, sans-serif;
   }
+  /**
+   * Small uppercase section labels: pure `text-primary` often misses 4.5:1 on
+   * `bg-muted/*` tints. Blend toward foreground for AA small text while
+   * staying on-brand.
+   */
+  .text-eyebrow-accent {
+    color: color-mix(in oklch, var(--primary) 45%, var(--foreground) 55%);
+  }
+  .dark .text-eyebrow-accent {
+    color: color-mix(in oklch, var(--primary) 68%, var(--foreground) 32%);
+  }
 }

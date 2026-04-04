@@ -9,12 +9,18 @@ import { sitePath } from "../../lib/site";
     <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
       <div class="space-y-4 lg:max-w-sm">
         <div class="inline-flex items-center gap-2">
-          <img
-            src="/logo.png"
-            alt="Vedamit Solutions logo"
-            class="h-15 w-auto grayscale-[100%] brightness-50"
-            loading="lazy"
-          />
+          <picture>
+            <source srcset={sitePath("/logo.avif")} type="image/avif" />
+            <img
+              src={sitePath("/logo.png")}
+              alt="Vedamit Solutions logo"
+              class="h-15 w-auto grayscale-[100%] brightness-50"
+              width="1280"
+              height="397"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
         <p class="text-sm leading-relaxed text-muted-foreground">
           AI, automation, and full‑stack engineering for teams that want clear
