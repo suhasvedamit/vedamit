@@ -38,35 +38,11 @@ export const stats = [
   { value: "10+", label: "Years Experience" },
 ] as const;
 
+import partnersData from "./partners.json";
+
 export const trustedBy = {
   title: "Built on strong collaborations",
   subtitle:
     "We're proud to partner with innovative companies across various industries",
-  partners: [
-    {
-      name: "Hudson Group",
-      category: "Manpower",
-      logoSrc: "/images/clients/hudson.png",
-    },
-    {
-      name: "Sumung",
-      category: "Finance",
-      logoSrc: "/images/clients/sumung.png",
-    },
-    {
-      name: "HYBB",
-      category: "Consulting",
-      logoSrc: "/images/clients/hybb.png",
-    },
-    {
-      name: "Route3Digital",
-      category: "Digital Marketing",
-      logoSrc: "/images/clients/route3.png",
-    },
-    {
-      name: "Medicam",
-      category: "Medical",
-      logoSrc: "/images/clients/medicam.jpg",
-    },
-  ] as const,
+  partners: partnersData.partners,
 };
