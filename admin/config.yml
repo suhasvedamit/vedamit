@@ -2,7 +2,7 @@ backend:
   name: github
   repo: suhasvedamit/vedamit
   branch: main
-local_backend: true
+  base_url: https://vedamitcms.vercel.app
 
 media_folder: "public/images"
 public_folder: "/images"
