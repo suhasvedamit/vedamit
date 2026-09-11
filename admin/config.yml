@@ -1,0 +1,37 @@
+backend:
+  name: github
+  repo: suhasvedamit/vedamit
+  branch: main
+local_backend: true
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "partners"
+    label: "Partners"
+    description: "Manage the list of trusted partners."
+    files:
+      - file: "src/data/partners.json"
+        label: "Partners List"
+        name: "partners_list"
+        fields:
+          - label: "Partners"
+            name: "partners"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Category", name: "category", widget: "string" }
+              - { label: "Logo", name: "logoSrc", widget: "image" }
+  - name: "contact"
+    label: "Contact Info"
+    description: "Manage the contact information."
+    files:
+      - file: "src/data/contact.json"
+        label: "Contact Details"
+        name: "contact_details"
+        fields:
+          - { label: "Location", name: "location", widget: "string", required: false }
+          - { label: "Phone", name: "phone", widget: "string", required: false }
+          - { label: "Email", name: "email", widget: "string", required: false }
+          - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
