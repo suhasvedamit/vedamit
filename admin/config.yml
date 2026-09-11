@@ -1,8 +1,10 @@
 backend:
   name: github
   repo: suhasvedamit/vedamit
-  branch: main
+  branch: gh-pages
   base_url: https://vedamitcms.vercel.app
+
+local_backend: true
 
 media_folder: "public/images"
 public_folder: "/images"
