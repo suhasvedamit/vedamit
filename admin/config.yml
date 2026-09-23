@@ -1,9 +1,7 @@
 backend:
   name: github
   repo: suhasvedamit/vedamit
-  branch: gh-pages
-  base_url: https://vedamitcms.vercel.app
-
+  branch: main
 local_backend: true
 
 media_folder: "public/images"
@@ -24,6 +22,7 @@ collections:
             fields:
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Category", name: "category", widget: "string" }
+              - { label: "URL", name: "url", widget: "string", required: false }
               - { label: "Logo", name: "logoSrc", widget: "image" }
   - name: "contact"
     label: "Contact Info"
