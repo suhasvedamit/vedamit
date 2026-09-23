@@ -24,6 +24,12 @@
       "name": "Medicam",
       "category": "Medical",
       "logoSrc": "/images/clients/medicam.jpg"
+    },
+    {
+      "name": "Shree Reda Maharaj Samadhi Mandir",
+      "category": "Religion",
+      "url": "https://www.redasamadhiale.com",
+      "logoSrc": "/images/clients/reda_samadhi.png"
     }
   ]
 }

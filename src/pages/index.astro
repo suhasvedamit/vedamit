@@ -158,8 +158,8 @@ import { sitePath } from "../lib/site";
         <div class="partners-marquee px-4">
           <div class="partners-marquee-track">
             {
-              [...trustedBy.partners, ...trustedBy.partners].map((p) => (
-                <div class="group flex min-h-[7.5rem] w-56 flex-shrink-0 items-center justify-center rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md">
+              [...trustedBy.partners, ...trustedBy.partners].map((p) => {
+                const innerContent = (
                   <img
                     src={sitePath(p.logoSrc)}
                     alt={`${p.name} logo`}
@@ -167,8 +167,20 @@ import { sitePath } from "../lib/site";
                     loading="lazy"
                     decoding="async"
                   />
-                </div>
-              ))
+                );
+
+                const containerClass = "group flex min-h-[7.5rem] w-56 flex-shrink-0 items-center justify-center rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/25 hover:shadow-md";
+
+                return p.url ? (
+                  <a href={p.url} target="_blank" rel="noopener noreferrer" class={containerClass}>
+                    {innerContent}
+                  </a>
+                ) : (
+                  <div class={containerClass}>
+                    {innerContent}
+                  </div>
+                );
+              })
             }
           </div>
         </div>
