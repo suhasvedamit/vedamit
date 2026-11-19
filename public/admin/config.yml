@@ -24,6 +24,50 @@ collections:
               - { label: "Category", name: "category", widget: "string" }
               - { label: "URL", name: "url", widget: "string", required: false }
               - { label: "Logo", name: "logoSrc", widget: "image" }
+  - name: "founders"
+    label: "Founders"
+    description: "Manage the founders on the About page."
+    files:
+      - file: "src/data/founders.json"
+        label: "Founders List"
+        name: "founders_list"
+        fields:
+          - label: "Founders"
+            name: "founders"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - {
+                  label: "Focus / Responsibility",
+                  name: "focus",
+                  widget: "string",
+                  required: false,
+                }
+              - {
+                  label: "Initials",
+                  name: "initials",
+                  widget: "string",
+                  required: false,
+                }
+              - { label: "Bio", name: "bio", widget: "text", required: false }
+              - {
+                  label: "Photo",
+                  name: "image",
+                  widget: "image",
+                  required: false,
+                }
+              - {
+                  label: "LinkedIn URL",
+                  name: "linkedin",
+                  widget: "string",
+                  required: false,
+                }
+              - label: "Key Areas / Pillars"
+                name: "expertise"
+                widget: "list"
+                required: false
+                field: { label: "Pillar", name: "item", widget: "string" }
   - name: "contact"
     label: "Contact Info"
     description: "Manage the contact information."
@@ -32,7 +76,17 @@ collections:
         label: "Contact Details"
         name: "contact_details"
         fields:
-          - { label: "Location", name: "location", widget: "string", required: false }
+          - {
+              label: "Location",
+              name: "location",
+              widget: "string",
+              required: false,
+            }
           - { label: "Phone", name: "phone", widget: "string", required: false }
           - { label: "Email", name: "email", widget: "string", required: false }
-          - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+          - {
+              label: "LinkedIn URL",
+              name: "linkedin",
+              widget: "string",
+              required: false,
+            }
